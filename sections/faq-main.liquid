@@ -57,44 +57,174 @@
 {
   "name": "FAQ page",
   "settings": [
-    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Frequently asked" },
-    { "type": "text", "id": "hero_heading", "label": "Hero heading", "default": "Questions? We've got answers, in all caps" },
-    { "type": "textarea", "id": "hero_subtext", "label": "Hero subtext", "default": "Everything you need to know about shipping, returns, sizing, and payment." },
-    { "type": "text", "id": "cta_heading", "label": "CTA heading", "default": "Still stuck?" },
-    { "type": "text", "id": "cta_body", "label": "CTA body", "default": "We're one message away — we reply within 1 business day." },
-    { "type": "text", "id": "cta_label", "label": "CTA button label", "default": "Contact us" },
-    { "type": "url", "id": "cta_link", "label": "CTA button link", "default": "/pages/contact" }
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Hero eyebrow",
+      "default": "Frequently asked"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "Questions? We've got answers, in all caps"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtext",
+      "label": "Hero subtext",
+      "default": "Everything you need to know about shipping, returns, sizing, and payment."
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA heading",
+      "default": "Still stuck?"
+    },
+    {
+      "type": "text",
+      "id": "cta_body",
+      "label": "CTA body",
+      "default": "We're one message away — we reply within 1 business day."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button label",
+      "default": "Contact us"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link",
+      "default": "/pages/contact"
+    }
   ],
   "blocks": [
     {
       "type": "faq_item",
       "name": "FAQ item",
       "settings": [
-        { "type": "select", "id": "group", "label": "Group", "options": [
-          { "value": "Shipping", "label": "Shipping" },
-          { "value": "Returns", "label": "Returns" },
-          { "value": "Sizing", "label": "Sizing" },
-          { "value": "Payment", "label": "Payment" }
-        ], "default": "Shipping" },
-        { "type": "text", "id": "question", "label": "Question" },
-        { "type": "textarea", "id": "answer", "label": "Answer" }
+        {
+          "type": "select",
+          "id": "group",
+          "label": "Group",
+          "options": [
+            {
+              "value": "Shipping",
+              "label": "Shipping"
+            },
+            {
+              "value": "Returns",
+              "label": "Returns"
+            },
+            {
+              "value": "Sizing",
+              "label": "Sizing"
+            },
+            {
+              "value": "Payment",
+              "label": "Payment"
+            }
+          ],
+          "default": "Shipping"
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
       ]
     }
   ],
   "default": {
     "blocks": [
-      { "type": "faq_item", "settings": { "group": "Shipping", "question": "How long does delivery take?", "answer": "Standard orders arrive within 5 business days. Need it faster? Choose Express at checkout for next-day delivery on orders placed before 15:00." } },
-      { "type": "faq_item", "settings": { "group": "Shipping", "question": "Is shipping free?", "answer": "Yes — shipping is free on all orders over €25 within the Netherlands and Belgium." } },
-      { "type": "faq_item", "settings": { "group": "Shipping", "question": "Do you ship outside the Netherlands?", "answer": "We currently ship to the Netherlands and Belgium only." } },
-      { "type": "faq_item", "settings": { "group": "Returns", "question": "What's your return policy?", "answer": "You have 14 days from delivery to return your cap, no questions asked. It just needs to be unworn, unwashed, and in its original packaging." } },
-      { "type": "faq_item", "settings": { "group": "Returns", "question": "How do I start a return?", "answer": "No need to email us — log in to your account, find your order, and select \"Start a return.\" Return shipping costs are the customer's responsibility." } },
-      { "type": "faq_item", "settings": { "group": "Returns", "question": "Can I exchange for a different colour?", "answer": "Yes — but exchanges are handled by email rather than through your account. Email hello@capslock.com with your order number and the colour you'd like." } },
-      { "type": "faq_item", "settings": { "group": "Sizing", "question": "What sizes are available?", "answer": "Every CAPSLOCK cap is one size, adjustable from 55cm to 61cm, so it fits most adult head sizes." } },
-      { "type": "faq_item", "settings": { "group": "Sizing", "question": "Does the cap run true to size?", "answer": "Yes — with a medium crown height. The metal buckle strap lets you fine-tune the fit either way." } },
-      { "type": "faq_item", "settings": { "group": "Payment", "question": "What payment methods do you accept?", "answer": "We accept iDEAL, Bancontact, credit card, and Shop Pay at checkout." } },
-      { "type": "faq_item", "settings": { "group": "Payment", "question": "Is my payment information secure?", "answer": "Yes — all payments are processed securely through Shopify's encrypted checkout." } }
+      {
+        "type": "faq_item",
+        "settings": {
+          "group": "Shipping",
+          "question": "How long does delivery take?",
+          "answer": "Standard orders arrive within 5 business days. Need it faster? Choose Express at checkout for next-day delivery on orders placed before 15:00."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "group": "Shipping",
+          "question": "Is shipping free?",
+          "answer": "Yes — shipping is free on all orders over €25 within the Netherlands and Belgium."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "group": "Shipping",
+          "question": "Do you ship outside the Netherlands?",
+          "answer": "We currently ship to the Netherlands and Belgium only."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "group": "Returns",
+          "question": "What's your return policy?",
+          "answer": "You have 14 days from delivery to return your cap, no questions asked. It just needs to be unworn, unwashed, and in its original packaging."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "group": "Returns",
+          "question": "How do I start a return?",
+          "answer": "No need to email us — log in to your account, find your order, and select \"Start a return.\" Return shipping costs are the customer's responsibility."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "group": "Returns",
+          "question": "Can I exchange for a different colour?",
+          "answer": "Yes — but exchanges are handled by email rather than through your account. Email hello@capslock.com with your order number and the colour you'd like."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "group": "Sizing",
+          "question": "What sizes are available?",
+          "answer": "Every CAPSLOCK cap is one size, adjustable from 55cm to 61cm, so it fits most adult head sizes."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "group": "Sizing",
+          "question": "Does the cap run true to size?",
+          "answer": "Yes — with a medium crown height. The metal buckle strap lets you fine-tune the fit either way."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "group": "Payment",
+          "question": "What payment methods do you accept?",
+          "answer": "We accept iDEAL, Bancontact, credit card, and Shop Pay at checkout."
+        }
+      },
+      {
+        "type": "faq_item",
+        "settings": {
+          "group": "Payment",
+          "question": "Is my payment information secure?",
+          "answer": "Yes — all payments are processed securely through Shopify's encrypted checkout."
+        }
+      }
     ]
-  },
-  "presets": [{ "name": "FAQ page" }]
+  }
 }
 {% endschema %}

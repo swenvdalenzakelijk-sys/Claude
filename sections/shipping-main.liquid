@@ -68,61 +68,200 @@
 {
   "name": "Shipping page",
   "settings": [
-    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Shipping & delivery" },
-    { "type": "text", "id": "hero_heading", "label": "Hero heading", "default": "Straight to your door, on time" },
-    { "type": "textarea", "id": "hero_subtext", "label": "Hero subtext", "default": "We ship every order from the Netherlands. Here's exactly what it costs and how long it takes." },
-    { "type": "text", "id": "countries_heading", "label": "Countries heading", "default": "Where we ship" },
-    { "type": "textarea", "id": "countries_subtext", "label": "Countries subtext", "default": "We currently deliver to the following countries. More are on the way." },
-    { "type": "text", "id": "info_heading", "label": "Info table heading", "default": "Good to know" },
-    { "type": "textarea", "id": "info_subtext", "label": "Info table subtext", "default": "The details that don't fit in a table." }
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Hero eyebrow",
+      "default": "Shipping & delivery"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "Straight to your door, on time"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtext",
+      "label": "Hero subtext",
+      "default": "We ship every order from the Netherlands. Here's exactly what it costs and how long it takes."
+    },
+    {
+      "type": "text",
+      "id": "countries_heading",
+      "label": "Countries heading",
+      "default": "Where we ship"
+    },
+    {
+      "type": "textarea",
+      "id": "countries_subtext",
+      "label": "Countries subtext",
+      "default": "We currently deliver to the following countries. More are on the way."
+    },
+    {
+      "type": "text",
+      "id": "info_heading",
+      "label": "Info table heading",
+      "default": "Good to know"
+    },
+    {
+      "type": "textarea",
+      "id": "info_subtext",
+      "label": "Info table subtext",
+      "default": "The details that don't fit in a table."
+    }
   ],
   "blocks": [
     {
       "type": "ship_method",
       "name": "Shipping method",
       "settings": [
-        { "type": "text", "id": "tag", "label": "Tag", "default": "Standard" },
-        { "type": "text", "id": "title", "label": "Title", "default": "Standard shipping" },
-        { "type": "text", "id": "price_line", "label": "Price line", "default": "€3,95 · free over €25" },
-        { "type": "textarea", "id": "details", "label": "Details (one per line)", "default": "Arrives within 5 business days\nFree automatically on orders over €25\nTracking link emailed once it ships" },
-        { "type": "checkbox", "id": "emphasize", "label": "Emphasize card (dark border)", "default": false }
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag",
+          "default": "Standard"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Standard shipping"
+        },
+        {
+          "type": "text",
+          "id": "price_line",
+          "label": "Price line",
+          "default": "€3,95 · free over €25"
+        },
+        {
+          "type": "textarea",
+          "id": "details",
+          "label": "Details (one per line)",
+          "default": "Arrives within 5 business days\nFree automatically on orders over €25\nTracking link emailed once it ships"
+        },
+        {
+          "type": "checkbox",
+          "id": "emphasize",
+          "label": "Emphasize card (dark border)",
+          "default": false
+        }
       ]
     },
     {
       "type": "country",
       "name": "Country",
-      "settings": [{ "type": "text", "id": "name", "label": "Country name" }]
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Country name"
+        }
+      ]
     },
     {
       "type": "info_row",
       "name": "Info table row",
       "settings": [
-        { "type": "text", "id": "label", "label": "Label" },
-        { "type": "text", "id": "value", "label": "Value" }
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value"
+        }
       ]
     },
     {
       "type": "accordion_item",
       "name": "Accordion item",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title" },
-        { "type": "textarea", "id": "body", "label": "Body" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body"
+        }
       ]
     }
   ],
   "default": {
     "blocks": [
-      { "type": "ship_method", "settings": { "tag": "Standard", "title": "Standard shipping", "price_line": "€3,95 · free over €25", "details": "Arrives within 5 business days\nFree automatically on orders over €25\nTracking link emailed once it ships", "emphasize": false } },
-      { "type": "ship_method", "settings": { "tag": "Express", "title": "Express shipping", "price_line": "€2,99", "details": "Order before 15:00 on a business day\nArrives the next business day\nTracking link emailed once it ships", "emphasize": true } },
-      { "type": "country", "settings": { "name": "Netherlands" } },
-      { "type": "country", "settings": { "name": "Belgium" } },
-      { "type": "info_row", "settings": { "label": "Dispatch time", "value": "Orders are dispatched within 1 business day" } },
-      { "type": "info_row", "settings": { "label": "Order cut-off", "value": "Orders placed before 15:00 on a business day ship the same day" } },
-      { "type": "info_row", "settings": { "label": "Carrier", "value": "All orders are shipped via PostNL" } },
-      { "type": "accordion_item", "settings": { "title": "What if I'm not home for delivery?", "body": "PostNL will leave your parcel with a neighbour or at a nearby pick-up point, and let you know where via text or email." } },
-      { "type": "accordion_item", "settings": { "title": "My order hasn't arrived yet — what do I do?", "body": "Check your tracking link first. Still stuck after the expected delivery date? Get in touch and we'll chase it up with PostNL." } }
+      {
+        "type": "ship_method",
+        "settings": {
+          "tag": "Standard",
+          "title": "Standard shipping",
+          "price_line": "€3,95 · free over €25",
+          "details": "Arrives within 5 business days\nFree automatically on orders over €25\nTracking link emailed once it ships",
+          "emphasize": false
+        }
+      },
+      {
+        "type": "ship_method",
+        "settings": {
+          "tag": "Express",
+          "title": "Express shipping",
+          "price_line": "€2,99",
+          "details": "Order before 15:00 on a business day\nArrives the next business day\nTracking link emailed once it ships",
+          "emphasize": true
+        }
+      },
+      {
+        "type": "country",
+        "settings": {
+          "name": "Netherlands"
+        }
+      },
+      {
+        "type": "country",
+        "settings": {
+          "name": "Belgium"
+        }
+      },
+      {
+        "type": "info_row",
+        "settings": {
+          "label": "Dispatch time",
+          "value": "Orders are dispatched within 1 business day"
+        }
+      },
+      {
+        "type": "info_row",
+        "settings": {
+          "label": "Order cut-off",
+          "value": "Orders placed before 15:00 on a business day ship the same day"
+        }
+      },
+      {
+        "type": "info_row",
+        "settings": {
+          "label": "Carrier",
+          "value": "All orders are shipped via PostNL"
+        }
+      },
+      {
+        "type": "accordion_item",
+        "settings": {
+          "title": "What if I'm not home for delivery?",
+          "body": "PostNL will leave your parcel with a neighbour or at a nearby pick-up point, and let you know where via text or email."
+        }
+      },
+      {
+        "type": "accordion_item",
+        "settings": {
+          "title": "My order hasn't arrived yet — what do I do?",
+          "body": "Check your tracking link first. Still stuck after the expected delivery date? Get in touch and we'll chase it up with PostNL."
+        }
+      }
     ]
-  },
-  "presets": [{ "name": "Shipping page" }]
+  }
 }
 {% endschema %}

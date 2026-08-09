@@ -78,63 +78,236 @@
 {
   "name": "Return policy page",
   "settings": [
-    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Return policy" },
-    { "type": "text", "id": "hero_heading", "label": "Hero heading", "default": "Changed your mind? No hard feelings" },
-    { "type": "textarea", "id": "hero_subtext", "label": "Hero subtext", "default": "We want you to keep your cap because you love it, not because it's a hassle to send back." },
-    { "type": "text", "id": "window_days", "label": "Return window (days)", "default": "14" },
-    { "type": "text", "id": "window_title", "label": "Window title", "default": "Days to return" },
-    { "type": "textarea", "id": "window_body", "label": "Window body", "default": "You have 14 days from the day your order arrives to request a return — no reason needed." },
-    { "type": "text", "id": "conditions_heading", "label": "Conditions heading", "default": "The conditions" },
-    { "type": "textarea", "id": "conditions_subtext", "label": "Conditions subtext", "default": "To qualify for a return, your cap needs to meet these conditions." },
-    { "type": "text", "id": "steps_heading", "label": "Steps heading", "default": "How to return it" },
-    { "type": "textarea", "id": "steps_subtext", "label": "Steps subtext", "default": "Three steps, no return label required." },
-    { "type": "text", "id": "address_heading", "label": "Address card heading", "default": "Return address" },
-    { "type": "textarea", "id": "address", "label": "Return address", "default": "CAPSLOCK\nWeidehoek 10\n3791 RP Achterveld\nNetherlands" },
-    { "type": "text", "id": "cost_note_label", "label": "Cost note label", "default": "Please note:" },
-    { "type": "textarea", "id": "cost_note_body", "label": "Cost note body", "default": "return shipping costs are the customer's responsibility and are not refunded. We recommend using a tracked shipping method." },
-    { "type": "text", "id": "cta_heading", "label": "CTA heading", "default": "Ready to start a return?" },
-    { "type": "textarea", "id": "cta_body", "label": "CTA body", "default": "Log in to your account and start your return in a few clicks." },
-    { "type": "text", "id": "cta_label", "label": "CTA button label", "default": "Go to your account" },
-    { "type": "url", "id": "cta_link", "label": "CTA button link", "default": "/account" }
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Hero eyebrow",
+      "default": "Return policy"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "Changed your mind? No hard feelings"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_subtext",
+      "label": "Hero subtext",
+      "default": "We want you to keep your cap because you love it, not because it's a hassle to send back."
+    },
+    {
+      "type": "text",
+      "id": "window_days",
+      "label": "Return window (days)",
+      "default": "14"
+    },
+    {
+      "type": "text",
+      "id": "window_title",
+      "label": "Window title",
+      "default": "Days to return"
+    },
+    {
+      "type": "textarea",
+      "id": "window_body",
+      "label": "Window body",
+      "default": "You have 14 days from the day your order arrives to request a return — no reason needed."
+    },
+    {
+      "type": "text",
+      "id": "conditions_heading",
+      "label": "Conditions heading",
+      "default": "The conditions"
+    },
+    {
+      "type": "textarea",
+      "id": "conditions_subtext",
+      "label": "Conditions subtext",
+      "default": "To qualify for a return, your cap needs to meet these conditions."
+    },
+    {
+      "type": "text",
+      "id": "steps_heading",
+      "label": "Steps heading",
+      "default": "How to return it"
+    },
+    {
+      "type": "textarea",
+      "id": "steps_subtext",
+      "label": "Steps subtext",
+      "default": "Three steps, no return label required."
+    },
+    {
+      "type": "text",
+      "id": "address_heading",
+      "label": "Address card heading",
+      "default": "Return address"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Return address",
+      "default": "CAPSLOCK\nWeidehoek 10\n3791 RP Achterveld\nNetherlands"
+    },
+    {
+      "type": "text",
+      "id": "cost_note_label",
+      "label": "Cost note label",
+      "default": "Please note:"
+    },
+    {
+      "type": "textarea",
+      "id": "cost_note_body",
+      "label": "Cost note body",
+      "default": "return shipping costs are the customer's responsibility and are not refunded. We recommend using a tracked shipping method."
+    },
+    {
+      "type": "text",
+      "id": "cta_heading",
+      "label": "CTA heading",
+      "default": "Ready to start a return?"
+    },
+    {
+      "type": "textarea",
+      "id": "cta_body",
+      "label": "CTA body",
+      "default": "Log in to your account and start your return in a few clicks."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button label",
+      "default": "Go to your account"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link",
+      "default": "/account"
+    }
   ],
   "blocks": [
     {
       "type": "condition",
       "name": "Condition",
-      "settings": [{ "type": "text", "id": "text", "label": "Text" }]
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
     },
     {
       "type": "step",
       "name": "Step",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title" },
-        { "type": "textarea", "id": "body", "label": "Body" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body"
+        }
       ]
     },
     {
       "type": "accordion_item",
       "name": "Accordion item",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title" },
-        { "type": "textarea", "id": "body", "label": "Body" }
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body"
+        }
       ]
     }
   ],
   "default": {
     "blocks": [
-      { "type": "condition", "settings": { "text": "Unworn and unwashed, with no signs of use" } },
-      { "type": "condition", "settings": { "text": "In its original packaging, tags attached" } },
-      { "type": "condition", "settings": { "text": "Embroidered patch and strap undamaged" } },
-      { "type": "condition", "settings": { "text": "Requested within 14 days of delivery" } },
-      { "type": "step", "settings": { "title": "Log in to your account", "body": "Go to your CAPSLOCK account, find your order, and select \"Start a return.\" No email needed." } },
-      { "type": "step", "settings": { "title": "Pack it up", "body": "Repack your cap in its original packaging, as close to how it arrived as possible." } },
-      { "type": "step", "settings": { "title": "Ship it back", "body": "Send it to our return address below. Return shipping costs are covered by you, the customer." } },
-      { "type": "accordion_item", "settings": { "title": "When will I get my refund?", "body": "Once we receive and check your return, we'll process your refund within 5 business days to your original payment method." } },
-      { "type": "accordion_item", "settings": { "title": "Can I exchange instead of returning?", "body": "Yes — but exchanges are handled by email rather than through your account. Email hello@capslock.com with your order number and the colour or design you'd like." } },
-      { "type": "accordion_item", "settings": { "title": "What if my cap arrived damaged or wrong?", "body": "Contact us directly with a photo and your order number within 14 days — we'll sort a replacement or refund and cover the cost." } },
-      { "type": "accordion_item", "settings": { "title": "Do you offer free return shipping?", "body": "Not currently — return shipping costs are covered by the customer, except in cases of a damaged, defective, or incorrect item." } }
+      {
+        "type": "condition",
+        "settings": {
+          "text": "Unworn and unwashed, with no signs of use"
+        }
+      },
+      {
+        "type": "condition",
+        "settings": {
+          "text": "In its original packaging, tags attached"
+        }
+      },
+      {
+        "type": "condition",
+        "settings": {
+          "text": "Embroidered patch and strap undamaged"
+        }
+      },
+      {
+        "type": "condition",
+        "settings": {
+          "text": "Requested within 14 days of delivery"
+        }
+      },
+      {
+        "type": "step",
+        "settings": {
+          "title": "Log in to your account",
+          "body": "Go to your CAPSLOCK account, find your order, and select \"Start a return.\" No email needed."
+        }
+      },
+      {
+        "type": "step",
+        "settings": {
+          "title": "Pack it up",
+          "body": "Repack your cap in its original packaging, as close to how it arrived as possible."
+        }
+      },
+      {
+        "type": "step",
+        "settings": {
+          "title": "Ship it back",
+          "body": "Send it to our return address below. Return shipping costs are covered by you, the customer."
+        }
+      },
+      {
+        "type": "accordion_item",
+        "settings": {
+          "title": "When will I get my refund?",
+          "body": "Once we receive and check your return, we'll process your refund within 5 business days to your original payment method."
+        }
+      },
+      {
+        "type": "accordion_item",
+        "settings": {
+          "title": "Can I exchange instead of returning?",
+          "body": "Yes — but exchanges are handled by email rather than through your account. Email hello@capslock.com with your order number and the colour or design you'd like."
+        }
+      },
+      {
+        "type": "accordion_item",
+        "settings": {
+          "title": "What if my cap arrived damaged or wrong?",
+          "body": "Contact us directly with a photo and your order number within 14 days — we'll sort a replacement or refund and cover the cost."
+        }
+      },
+      {
+        "type": "accordion_item",
+        "settings": {
+          "title": "Do you offer free return shipping?",
+          "body": "Not currently — return shipping costs are covered by the customer, except in cases of a damaged, defective, or incorrect item."
+        }
+      }
     ]
-  },
-  "presets": [{ "name": "Return policy page" }]
+  }
 }
 {% endschema %}
