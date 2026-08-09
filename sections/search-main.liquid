@@ -1,0 +1,64 @@
+<section class="section page-hero" style="padding-bottom:0;">
+  <div class="container">
+    <div class="eyebrow">{{ section.settings.eyebrow }}</div>
+    <h1>{% if search.performed %}{{ section.settings.results_heading }} “{{ search.terms }}”{% else %}{{ section.settings.heading }}{% endif %}</h1>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ section.settings.placeholder }}" class="search-input">
+      <input type="hidden" name="type" value="product">
+      <button type="submit" class="btn btn-primary">{{ section.settings.button_label }}</button>
+    </form>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        <div class="grid-3">
+          {% for item in search.results %}
+            <a href="{{ item.url }}" class="card" style="display:block;">
+              <div class="card-img">
+                {% if item.featured_image %}
+                  {{ item.featured_image | image_url: width: 700 | image_tag: alt: item.title }}
+                {% endif %}
+              </div>
+              <div class="card-body">
+                <div class="cname">{{ item.title }}</div>
+                {% if item.price %}
+                  <div class="cprice"><span class="now">{{ item.price | money }}</span></div>
+                {% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p class="search-empty">{{ section.settings.no_results_message }} “{{ search.terms }}”.</p>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .search-form{ display:flex; gap:12px; max-width:520px; margin-top:28px; flex-wrap:wrap; }
+  .search-input{
+    flex:1; min-width:200px; border:1.4px solid var(--hairline); border-radius:100px;
+    padding:15px 22px; font-family:var(--body); font-size:14.5px; background:var(--white);
+  }
+  .search-input:focus{ outline:none; border-color:var(--ink); }
+  .search-empty{ color:var(--grey); font-size:15px; text-align:center; padding:40px 0; }
+</style>
+
+{% schema %}
+{
+  "name": "Search page",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Search" },
+    { "type": "text", "id": "heading", "label": "Heading (before a search)", "default": "What are you looking for?" },
+    { "type": "text", "id": "results_heading", "label": "Results heading prefix", "default": "Results for" },
+    { "type": "text", "id": "placeholder", "label": "Input placeholder", "default": "Search caps..." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Search" },
+    { "type": "text", "id": "no_results_message", "label": "No results message", "default": "No results found for" }
+  ]
+}
+{% endschema %}

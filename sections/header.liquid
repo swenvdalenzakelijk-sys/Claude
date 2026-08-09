@@ -1,0 +1,122 @@
+<header>
+  <div class="nav">
+    <a href="/" class="logo">
+      {% if section.settings.logo_image %}
+        {{ section.settings.logo_image | image_url: width: 400 | image_tag: alt: section.settings.logo_text, style: 'height:' | append: section.settings.logo_height | append: 'px;width:auto;display:block;' }}
+      {% else %}
+        {{ section.settings.logo_text }}
+      {% endif %}
+    </a>
+    <nav class="nav-links">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}"{{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+      {% endfor %}
+    </nav>
+    <div class="nav-icons">
+      <a href="{{ routes.search_url }}" class="icon-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+      </a>
+      <button id="cartBtn" class="icon-btn" aria-label="Open cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 L3 6 V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        {% if cart.item_count > 0 %}<span class="cart-count">{{ cart.item_count }}</span>{% endif %}
+      </button>
+      <button class="burger" id="burgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- Shared overlay (menu + cart) -->
+<div class="drawer-overlay" id="menuOverlay"></div>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mm-top">
+    <a href="/" class="logo">{{ section.settings.logo_text }}</a>
+    <button class="mm-close" id="mmClose">&times;</button>
+  </div>
+  <div class="mm-links">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.link }}"{% if forloop.last %} class="red"{% endif %}>{{ block.settings.label }}</a>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Cart drawer -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-head">
+    <span class="cart-drawer-title">Your cart <span class="cart-drawer-count">({{ cart.item_count }})</span></span>
+    <button class="cart-drawer-close" id="cartClose">&times;</button>
+  </div>
+
+  <div class="cart-drawer-body">
+    {% if cart.item_count == 0 %}
+      <div class="cart-drawer-empty">
+        <p>Your cart is empty.</p>
+        <a href="/collections/all" class="btn btn-primary" style="margin-top:20px;">Shop all caps</a>
+      </div>
+    {% else %}
+      {% for item in cart.items %}
+        <div class="cart-drawer-line">
+          <a href="{{ item.url }}" class="cart-drawer-img">
+            {% if item.image %}{{ item.image | image_url: width: 160 | image_tag: alt: item.title }}{% endif %}
+          </a>
+          <div class="cart-drawer-info">
+            <div class="cart-drawer-name">{{ item.product.title }}</div>
+            {% unless item.variant.title == 'Default Title' %}<div class="cart-drawer-variant">{{ item.variant.title }}</div>{% endunless %}
+            <div class="cart-drawer-price">{{ item.final_price | money }}</div>
+            <div class="cart-drawer-controls">
+              <div class="qty-stepper">
+                <button class="qty-btn" data-line="{{ forloop.index }}" data-delta="-1" type="button">−</button>
+                <input class="qty-input" type="number" value="{{ item.quantity }}" min="0" data-line="{{ forloop.index }}">
+                <button class="qty-btn" data-line="{{ forloop.index }}" data-delta="1" type="button">+</button>
+              </div>
+              <a href="{{ item.url_to_remove }}" class="cart-line-remove">Remove</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  {% if cart.item_count > 0 %}
+    <div class="cart-drawer-foot">
+      <div class="cart-drawer-subtotal">
+        <span>Subtotal</span>
+        <span>{{ cart.total_price | money }}</span>
+      </div>
+      <p class="cart-drawer-note">Shipping and taxes calculated at checkout.</p>
+      <a href="/checkout" class="btn btn-primary form-submit">Checkout</a>
+      <a href="/cart" class="cart-continue">View full cart</a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "text", "id": "logo_text", "label": "Logo text", "default": "CAPSLOCK" },
+    { "type": "image_picker", "id": "logo_image", "label": "Logo image (optional)" },
+    { "type": "range", "id": "logo_height", "label": "Logo image height (px)", "min": 20, "max": 80, "step": 2, "default": 32 }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Nav link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Shop" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "nav_link", "settings": { "label": "Shop", "link": "/collections/all" } },
+      { "type": "nav_link", "settings": { "label": "About", "link": "/pages/about-us" } },
+      { "type": "nav_link", "settings": { "label": "FAQ", "link": "/pages/faq" } },
+      { "type": "nav_link", "settings": { "label": "Contact", "link": "/pages/contact" } }
+    ]
+  }
+}
+{% endschema %}

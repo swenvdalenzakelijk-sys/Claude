@@ -1,0 +1,100 @@
+<section class="section page-hero">
+  <div class="container">
+    <div class="eyebrow">{{ section.settings.hero_eyebrow }}</div>
+    <h1>{{ section.settings.hero_heading }}</h1>
+    <p>{{ section.settings.hero_subtext }}</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+
+    {% assign groups = '' %}
+    {% for block in section.blocks %}
+      {% if block.type == 'faq_item' %}
+        {% unless groups contains block.settings.group %}
+          {% assign groups = groups | append: block.settings.group | append: '||' %}
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
+    {% assign group_list = groups | split: '||' %}
+
+    <div class="faq-nav">
+      {% for g in group_list %}
+        <a href="#{{ g | handleize }}">{{ g }}</a>
+      {% endfor %}
+    </div>
+
+    {% for g in group_list %}
+      <div class="faq-group" id="{{ g | handleize }}">
+        <h2><span class="n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>{{ g }}</h2>
+        <div class="accordion">
+          {% assign first_in_group = true %}
+          {% for block in section.blocks %}
+            {% if block.type == 'faq_item' and block.settings.group == g %}
+              <div class="acc-item{% if first_in_group %} open{% endif %}"{{ block.shopify_attributes }}>
+                <button type="button" class="acc-head">{{ block.settings.question }} <span class="plus">+</span></button>
+                <div class="acc-body"><p>{{ block.settings.answer }}</p></div>
+              </div>
+              {% assign first_in_group = false %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="faq-cta">
+  <div class="container">
+    <h3>{{ section.settings.cta_heading }}</h3>
+    <p>{{ section.settings.cta_body }}</p>
+    <a href="{{ section.settings.cta_link }}" class="btn btn-primary">{{ section.settings.cta_label }}</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FAQ page",
+  "settings": [
+    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Frequently asked" },
+    { "type": "text", "id": "hero_heading", "label": "Hero heading", "default": "Questions? We've got answers, in all caps" },
+    { "type": "textarea", "id": "hero_subtext", "label": "Hero subtext", "default": "Everything you need to know about shipping, returns, sizing, and payment." },
+    { "type": "text", "id": "cta_heading", "label": "CTA heading", "default": "Still stuck?" },
+    { "type": "text", "id": "cta_body", "label": "CTA body", "default": "We're one message away — we reply within 1 business day." },
+    { "type": "text", "id": "cta_label", "label": "CTA button label", "default": "Contact us" },
+    { "type": "url", "id": "cta_link", "label": "CTA button link", "default": "/pages/contact" }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "select", "id": "group", "label": "Group", "options": [
+          { "value": "Shipping", "label": "Shipping" },
+          { "value": "Returns", "label": "Returns" },
+          { "value": "Sizing", "label": "Sizing" },
+          { "value": "Payment", "label": "Payment" }
+        ], "default": "Shipping" },
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "textarea", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "faq_item", "settings": { "group": "Shipping", "question": "How long does delivery take?", "answer": "Standard orders arrive within 5 business days. Need it faster? Choose Express at checkout for next-day delivery on orders placed before 15:00." } },
+      { "type": "faq_item", "settings": { "group": "Shipping", "question": "Is shipping free?", "answer": "Yes — shipping is free on all orders over €25 within the Netherlands and Belgium." } },
+      { "type": "faq_item", "settings": { "group": "Shipping", "question": "Do you ship outside the Netherlands?", "answer": "We currently ship to the Netherlands and Belgium only." } },
+      { "type": "faq_item", "settings": { "group": "Returns", "question": "What's your return policy?", "answer": "You have 14 days from delivery to return your cap, no questions asked. It just needs to be unworn, unwashed, and in its original packaging." } },
+      { "type": "faq_item", "settings": { "group": "Returns", "question": "How do I start a return?", "answer": "No need to email us — log in to your account, find your order, and select \"Start a return.\" Return shipping costs are the customer's responsibility." } },
+      { "type": "faq_item", "settings": { "group": "Returns", "question": "Can I exchange for a different colour?", "answer": "Yes — but exchanges are handled by email rather than through your account. Email hello@capslock.com with your order number and the colour you'd like." } },
+      { "type": "faq_item", "settings": { "group": "Sizing", "question": "What sizes are available?", "answer": "Every CAPSLOCK cap is one size, adjustable from 55cm to 61cm, so it fits most adult head sizes." } },
+      { "type": "faq_item", "settings": { "group": "Sizing", "question": "Does the cap run true to size?", "answer": "Yes — with a medium crown height. The metal buckle strap lets you fine-tune the fit either way." } },
+      { "type": "faq_item", "settings": { "group": "Payment", "question": "What payment methods do you accept?", "answer": "We accept iDEAL, Bancontact, credit card, and Shop Pay at checkout." } },
+      { "type": "faq_item", "settings": { "group": "Payment", "question": "Is my payment information secure?", "answer": "Yes — all payments are processed securely through Shopify's encrypted checkout." } }
+    ]
+  },
+  "presets": [{ "name": "FAQ page" }]
+}
+{% endschema %}

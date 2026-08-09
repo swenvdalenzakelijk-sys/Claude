@@ -1,0 +1,33 @@
+<div class="ticker-wrap">
+  <div class="ticker">
+    {% for i in (1..2) %}
+      {% for block in section.blocks %}
+        <span{{ block.shopify_attributes }}>{{ block.settings.message }}</span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        { "type": "text", "id": "message", "label": "Message", "default": "FREE SHIPPING OVER €25" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "message", "settings": { "message": "FREE SHIPPING OVER €25" } },
+      { "type": "message", "settings": { "message": "NEW DROP — THE CAPSLOCK CAP" } },
+      { "type": "message", "settings": { "message": "ARRIVES IN 5 BUSINESS DAYS" } },
+      { "type": "message", "settings": { "message": "MADE FOR THE MAINSTAGE" } }
+    ]
+  }
+}
+{% endschema %}

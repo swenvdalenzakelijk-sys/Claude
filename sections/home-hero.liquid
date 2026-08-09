@@ -1,0 +1,140 @@
+<section class="hero">
+  <div class="hero-ring"></div>
+
+  <div class="hero-copy">
+    <div class="eyebrow">{{ section.settings.eyebrow }}</div>
+
+    <h1>
+      {{ section.settings.heading_line_1 }}<br>
+      {{ section.settings.heading_line_2 }}<br>
+      <em>{{ section.settings.heading_line_3 }}</em>
+    </h1>
+
+    <p>{{ section.settings.subtext }}</p>
+
+    <div class="hero-ctas">
+      {% if section.settings.primary_label != blank %}
+        <a href="{{ section.settings.primary_link }}" class="btn btn-primary">
+          {{ section.settings.primary_label }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.secondary_label != blank %}
+        <a href="{{ section.settings.secondary_link }}" class="btn btn-outline">
+          {{ section.settings.secondary_label }}
+        </a>
+      {% endif %}
+    </div>
+
+    <div class="hero-badges">
+      {% for block in section.blocks %}
+        <span class="pill" {{ block.shopify_attributes }}>
+          {{ block.settings.text }}
+        </span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    {% if section.settings.image %}
+      {{ section.settings.image | image_url: width: 900 | image_tag: alt: section.settings.heading_line_1 }}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Festival season essentials"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading — line 1",
+      "default": "CAPS"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_2",
+      "label": "Heading — line 2",
+      "default": "LOCK"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_3",
+      "label": "Heading — line 3 (shown in red)",
+      "default": "ON."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Embroidered dad caps built for long sets and longer nights. Every design finished with premium stitching and an adjustable strap."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop all caps"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Our story"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge pill",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "text": "Free shipping over €25"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "text": "One size, adjustable"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

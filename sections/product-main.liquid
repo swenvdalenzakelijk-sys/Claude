@@ -1,0 +1,912 @@
+<div class="container breadcrumb">
+  <a href="{{ section.settings.back_link | default: '/collections/all' }}">← Back to shop</a>
+</div>
+
+<section class="section" id="product">
+  <div class="container">
+
+    <div class="product">
+
+      <div class="product-gallery">
+
+        <div class="gallery-main">
+          <div class="ghost-ring"></div>
+
+          {% if product.selected_or_first_available_variant.featured_image %}
+            {% assign main_img = product.selected_or_first_available_variant.featured_image %}
+          {% else %}
+            {% assign main_img = product.featured_image %}
+          {% endif %}
+
+          {% if main_img %}
+            {{
+              main_img
+              | image_url: width: 900
+              | image_tag:
+                id: 'mainImg',
+                alt: product.title
+            }}
+          {% endif %}
+        </div>
+
+        <div class="gallery-thumbs">
+
+          {% for variant in product.variants %}
+
+            <div
+              class="{% if variant.id == product.selected_or_first_available_variant.id %}active{% endif %}"
+              data-variant-id="{{ variant.id }}"
+              onclick="capslockSetVariant({{ variant.id }})"
+            >
+              {% assign thumb_image = variant.featured_image | default: product.featured_image %}
+
+              {% if thumb_image %}
+                {{
+                  thumb_image
+                  | image_url: width: 150
+                  | image_tag:
+                    alt: variant.title
+                }}
+              {% endif %}
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+
+      <div class="product-info">
+
+        <div class="pbrand">
+          {{ section.settings.brand_label }}
+        </div>
+
+        <h1>{{ product.title }}</h1>
+
+        {% if section.settings.subtitle != blank %}
+          <p class="psub">{{ section.settings.subtitle }}</p>
+        {% endif %}
+
+
+        <div class="price-row">
+
+          <span class="now" id="variantPrice">
+            {{ product.selected_or_first_available_variant.price | money }}
+          </span>
+
+          {% assign current_variant = product.selected_or_first_available_variant %}
+
+          {% if current_variant.compare_at_price > current_variant.price %}
+            <span class="was" id="variantComparePrice">
+              {{ current_variant.compare_at_price | money }}
+            </span>
+          {% endif %}
+
+        </div>
+
+
+        {% if product.options contains 'Color' or product.options contains 'Colour' %}
+
+          <span class="opt-label">
+            Colour —
+            <span id="colorLabel">
+              {{ product.selected_or_first_available_variant.option1 }}
+            </span>
+          </span>
+
+          <div class="color-row">
+
+            {% for variant in product.variants %}
+
+              {% capture hex %}
+                {% render 'color-swatch-hex', name: variant.option1 %}
+              {% endcapture %}
+
+              <div
+                class="color-opt {% if variant.id == product.selected_or_first_available_variant.id %}active{% endif %}"
+                data-variant-id="{{ variant.id }}"
+                onclick="capslockSetVariant({{ variant.id }})"
+                title="{{ variant.option1 }}"
+              >
+                <i style="background:{{ hex | strip }};"></i>
+              </div>
+
+            {% endfor %}
+
+          </div>
+
+        {% endif %}
+
+
+        <div class="strap-row">
+
+          <span>
+            <b>{{ section.settings.fit_label }}</b>
+            — {{ section.settings.fit_detail }}
+          </span>
+
+          <a href="#faq">Fit guide</a>
+
+        </div>
+
+
+        {%- comment -%}
+          ADD TO CART FORM
+
+          Dit is bewust een aparte product-form.
+          De Notify Me customer-form staat hieronder buiten deze form,
+          zodat er geen geneste forms ontstaan.
+        {%- endcomment -%}
+
+        {% form 'product', product, id: 'product-form' %}
+
+          <div class="add-row">
+
+            <button
+              type="button"
+              class="wish-btn"
+              aria-label="Add to wishlist"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+              >
+                <path d="M12 21s-7.5-4.6-10-9.2C.6 8 2.4 4 6.4 4c2 0 3.6 1.1 4.6 2.7C12 5.1 13.6 4 15.6 4c4 0 5.8 4 4.4 7.8C19.5 16.4 12 21 12 21z"/>
+              </svg>
+            </button>
+
+
+            <input
+              type="hidden"
+              name="id"
+              id="variantIdInput"
+              value="{{ product.selected_or_first_available_variant.id }}"
+            >
+
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="addToCartButton"
+              {% unless product.selected_or_first_available_variant.available %}
+                disabled
+              {% endunless %}
+            >
+
+              <span id="addToCartLabel">
+
+                {% if product.selected_or_first_available_variant.available %}
+                  {{ section.settings.add_to_cart_label }}
+                {% else %}
+                  {{ section.settings.sold_out_label }}
+                {% endif %}
+
+                —
+                <span id="variantPriceInline">
+                  {{ product.selected_or_first_available_variant.price | money }}
+                </span>
+
+              </span>
+
+            </button>
+
+          </div>
+
+        {% endform %}
+
+
+        {%- comment -%}
+          NOTIFY ME
+
+          Deze form staat BUITEN de product-form.
+        {%- endcomment -%}
+
+        <div
+          class="notify-row"
+          id="notifyRow"
+          {% if product.selected_or_first_available_variant.available %}
+            style="display:none;"
+          {% endif %}
+        >
+
+          {% form 'customer', class: 'notify-form' %}
+
+            {% if form.posted_successfully? %}
+
+              <p class="notify-success">
+                {{ section.settings.notify_success }}
+              </p>
+
+            {% else %}
+
+              <p class="notify-label" id="notifyLabel">
+                {{ section.settings.notify_label }}
+              </p>
+
+              <div class="notify-input-row">
+
+                <input
+                  type="email"
+                  name="contact[email]"
+                  placeholder="{{ section.settings.notify_placeholder }}"
+                  required
+                >
+
+                <input
+                  type="hidden"
+                  name="contact[tags]"
+                  id="notifyTagsInput"
+                  value="restock-request,restock:{{ product.handle }},restock-variant:{{ product.selected_or_first_available_variant.id }}"
+                >
+
+                <button type="submit" class="btn btn-outline">
+                  {{ section.settings.notify_button }}
+                </button>
+
+              </div>
+
+            {% endif %}
+
+          {% endform %}
+
+        </div>
+
+
+        <ul class="trust-list">
+
+          {% for block in section.blocks %}
+
+            {% if block.type == 'trust_item' %}
+
+              <li {{ block.shopify_attributes }}>
+                <span class="dot">✓</span>
+                {{ block.settings.text }}
+              </li>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </ul>
+
+
+        <div class="note">
+
+          <h3>{{ section.settings.note_heading }}</h3>
+
+          <div>
+            {{ product.description }}
+          </div>
+
+
+          {% if section.settings.show_spec_list %}
+
+            <ul>
+
+              {% for block in section.blocks %}
+
+                {% if block.type == 'spec_item' %}
+
+                  <li {{ block.shopify_attributes }}>
+                    {{ block.settings.text }}
+                  </li>
+
+                {% endif %}
+
+              {% endfor %}
+
+            </ul>
+
+          {% endif %}
+
+
+          <p class="sku">
+            {{ section.settings.handle_label }}:
+            {{ product.handle }}
+          </p>
+
+        </div>
+
+
+        <div class="accordion" id="faq">
+
+          {% for block in section.blocks %}
+
+            {% if block.type == 'accordion_item' %}
+
+              <div
+                class="acc-item{% if forloop.first %} open{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+
+                <button type="button" class="acc-head">
+
+                  {{ block.settings.title }}
+
+                  <span class="plus">+</span>
+
+                </button>
+
+                <div class="acc-body">
+                  <p>{{ block.settings.body }}</p>
+                </div>
+
+              </div>
+
+            {% endif %}
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<div class="sticky-atc" id="stickyAtc">
+
+  <div class="sticky-left">
+
+    {% if product.featured_image %}
+      {{
+        product.featured_image
+        | image_url: width: 100
+        | image_tag:
+          alt: product.title
+      }}
+    {% endif %}
+
+    <div>
+
+      <div class="sp-name">
+        {{ product.title }}
+      </div>
+
+      <div class="sp-price" id="stickyPrice">
+        {{ product.selected_or_first_available_variant.price | money }}
+      </div>
+
+    </div>
+
+  </div>
+
+
+  {% assign sticky_available = product.selected_or_first_available_variant.available %}
+  <button
+    type="{% if sticky_available %}submit{% else %}button{% endif %}"
+    form="product-form"
+    class="btn btn-primary"
+    id="stickyAtcBtn"
+    {% unless sticky_available %}disabled onclick="document.getElementById('notifyRow') && document.getElementById('notifyRow').scrollIntoView({behavior:'smooth',block:'center'})"{% endunless %}
+  >
+    {% if sticky_available %}{{ section.settings.add_to_cart_label }}{% else %}Sold out — notify me{% endif %}
+  </button>
+
+</div>
+
+
+<script>
+
+  const CAPSLOCK_VARIANTS = {{ product.variants | json }};
+  const CAPSLOCK_MONEY_FORMAT = {{ shop.money_format | json }};
+  window.CAPSLOCK_VARIANTS = CAPSLOCK_VARIANTS;
+  window.CAPSLOCK_MONEY_FORMAT = CAPSLOCK_MONEY_FORMAT;
+  window.CAPSLOCK_HANDLE = {{ product.handle | json }};
+
+
+  /*
+   * MONEY FORMAT
+   *
+   * Shopify geeft bijvoorbeeld:
+   * €{{amount_with_comma_separator}}
+   *
+   * De fallback bevat bewust GEEN Liquid {{ }}.
+   */
+
+  function capslockFormatMoney(cents) {
+
+    const numericCents = Number(cents) || 0;
+
+    const amount = (numericCents / 100).toFixed(2);
+    const amountComma = amount.replace('.', ',');
+
+    let format = CAPSLOCK_MONEY_FORMAT;
+
+    if (!format) {
+      return '€' + amountComma;
+    }
+
+
+    format = format.replace(
+      /\{\{\s*amount_with_comma_separator\s*\}\}/g,
+      amountComma
+    );
+
+
+    format = format.replace(
+      /\{\{\s*amount\s*\}\}/g,
+      amount
+    );
+
+
+    format = format.replace(
+      /\{\{\s*amount_no_decimals_with_comma_separator\s*\}\}/g,
+      Math.round(numericCents / 100).toString().replace('.', ',')
+    );
+
+
+    format = format.replace(
+      /\{\{\s*amount_no_decimals\s*\}\}/g,
+      Math.round(numericCents / 100).toString()
+    );
+
+
+    return format;
+  }
+
+
+  /*
+   * VARIANT SELECTOR
+   */
+
+  function capslockSetVariant(variantId) {
+
+    const variant = CAPSLOCK_VARIANTS.find(function(v) {
+      return String(v.id) === String(variantId);
+    });
+
+
+    if (!variant) {
+
+      console.error(
+        'CAPSLOCK: variant not found',
+        variantId
+      );
+
+      return;
+    }
+
+
+    /*
+     * 1. Update Shopify product-form variant ID
+     */
+
+    const variantInput =
+      document.getElementById('variantIdInput');
+
+    if (variantInput) {
+      variantInput.value = variant.id;
+    }
+
+
+    /*
+     * 2. Update main price
+     */
+
+    const formattedPrice =
+      capslockFormatMoney(variant.price);
+
+
+    const priceEl =
+      document.getElementById('variantPrice');
+
+    if (priceEl) {
+      priceEl.textContent = formattedPrice;
+    }
+
+
+    /*
+     * 3. Update Add to Cart price
+     */
+
+    const inlinePriceEl =
+      document.getElementById('variantPriceInline');
+
+    if (inlinePriceEl) {
+      inlinePriceEl.textContent = formattedPrice;
+    }
+
+
+    /*
+     * 4. Update sticky price
+     */
+
+    const stickyPriceEl =
+      document.getElementById('stickyPrice');
+
+    if (stickyPriceEl) {
+      stickyPriceEl.textContent = formattedPrice;
+    }
+
+
+    /*
+     * 5. Update colour label
+     */
+
+    const colorLabel =
+      document.getElementById('colorLabel');
+
+    if (colorLabel && variant.option1) {
+      colorLabel.textContent = variant.option1;
+    }
+
+
+    /*
+     * 6. Update main image
+     */
+
+    if (
+      variant.featured_image &&
+      variant.featured_image.src
+    ) {
+
+      const mainImg =
+        document.getElementById('mainImg');
+
+      if (mainImg) {
+
+        mainImg.src =
+          variant.featured_image.src;
+
+        mainImg.srcset =
+          variant.featured_image.src;
+
+      }
+
+    }
+
+
+    /*
+     * 7. Update active gallery thumbnail
+     */
+
+    document
+      .querySelectorAll('.gallery-thumbs > div')
+      .forEach(function(el) {
+
+        el.classList.remove('active');
+
+      });
+
+
+    /*
+     * 8. Update active colour swatch
+     */
+
+    document
+      .querySelectorAll('.color-opt')
+      .forEach(function(el) {
+
+        el.classList.remove('active');
+
+      });
+
+
+    /*
+     * 9. Mark selected variant everywhere
+     */
+
+    document
+      .querySelectorAll(
+        '[data-variant-id="' + variant.id + '"]'
+      )
+      .forEach(function(el) {
+
+        el.classList.add('active');
+
+      });
+
+
+    /*
+     * 10. Update Add to Cart availability
+     */
+
+    const addButton =
+      document.getElementById('addToCartButton');
+
+
+    if (addButton) {
+
+      addButton.disabled =
+        !variant.available;
+
+      const label =
+        variant.available
+          ? {{ section.settings.add_to_cart_label | json }}
+          : {{ section.settings.sold_out_label | json }};
+
+
+      const labelSpan =
+        document.getElementById('addToCartLabel');
+
+
+      if (labelSpan) {
+
+        labelSpan.innerHTML =
+          label +
+          ' — <span id="variantPriceInline">' +
+          formattedPrice +
+          '</span>';
+
+      }
+
+    }
+
+
+    /*
+     * 11. Notify-me visibility
+     */
+
+    const notifyRow =
+      document.getElementById('notifyRow');
+
+
+    if (notifyRow) {
+
+      notifyRow.style.display =
+        variant.available
+          ? 'none'
+          : 'block';
+
+    }
+
+
+    /*
+     * 12. Update Notify-me tags
+     */
+
+    const notifyTags =
+      document.getElementById('notifyTagsInput');
+
+
+    if (notifyTags) {
+
+      notifyTags.value =
+        'restock-request,restock:{{ product.handle }},restock-variant:' +
+        variant.id;
+
+    }
+
+  }
+
+
+  /*
+   * STICKY ADD TO CART
+   */
+
+  const productSection =
+    document.getElementById('product');
+
+  const stickyAtc =
+    document.getElementById('stickyAtc');
+
+
+  if (productSection && stickyAtc) {
+
+    window.addEventListener(
+      'scroll',
+      function() {
+
+        const rect =
+          productSection.getBoundingClientRect();
+
+
+        if (rect.top < -200) {
+
+          stickyAtc.classList.add('show');
+
+        } else {
+
+          stickyAtc.classList.remove('show');
+
+        }
+
+      }
+    );
+
+  }
+
+</script>
+
+
+{% schema %}
+{
+  "name": "Product details",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_label",
+      "label": "Brand label",
+      "default": "CAPSLOCK — Festival Caps"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle under title",
+      "default": "Six-panel dad cap with embroidered patch"
+    },
+    {
+      "type": "text",
+      "id": "fit_label",
+      "label": "Fit label",
+      "default": "One size"
+    },
+    {
+      "type": "text",
+      "id": "fit_detail",
+      "label": "Fit detail",
+      "default": "fits 55–61cm"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_label",
+      "label": "Add to cart label",
+      "default": "Add to cart"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_label",
+      "label": "Sold out label",
+      "default": "Sold out"
+    },
+    {
+      "type": "text",
+      "id": "notify_label",
+      "label": "Notify-me label",
+      "default": "This colour is sold out — want to know when it's back?"
+    },
+    {
+      "type": "text",
+      "id": "notify_placeholder",
+      "label": "Notify-me email placeholder",
+      "default": "you@email.com"
+    },
+    {
+      "type": "text",
+      "id": "notify_button",
+      "label": "Notify-me button label",
+      "default": "Notify me"
+    },
+    {
+      "type": "text",
+      "id": "notify_success",
+      "label": "Notify-me success message",
+      "default": "Thanks — we'll email you the moment it's back in stock."
+    },
+    {
+      "type": "text",
+      "id": "note_heading",
+      "label": "Description heading",
+      "default": "Designer's note"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_spec_list",
+      "label": "Show spec list under description",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "handle_label",
+      "label": "Handle label",
+      "default": "Product handle"
+    },
+    {
+      "type": "url",
+      "id": "back_link",
+      "label": "Back to shop link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust list item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "spec_item",
+      "name": "Spec list item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "accordion_item",
+      "name": "Accordion item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "trust_item",
+        "settings": {
+          "text": "Arrives within 5 business days"
+        }
+      },
+      {
+        "type": "trust_item",
+        "settings": {
+          "text": "14 days to change your mind"
+        }
+      },
+      {
+        "type": "trust_item",
+        "settings": {
+          "text": "Free shipping over €25 (NL & BE)"
+        }
+      },
+      {
+        "type": "spec_item",
+        "settings": {
+          "text": "Structured 6-panel crown, low profile"
+        }
+      },
+      {
+        "type": "spec_item",
+        "settings": {
+          "text": "Heavyweight brushed cotton twill"
+        }
+      },
+      {
+        "type": "spec_item",
+        "settings": {
+          "text": "Embroidered patch, metal adjustable buckle"
+        }
+      },
+      {
+        "type": "accordion_item",
+        "settings": {
+          "title": "Details & materials",
+          "body": "100% brushed cotton twill, structured front panel, curved peak, metal buckle closure with matching eyelets."
+        }
+      },
+      {
+        "type": "accordion_item",
+        "settings": {
+          "title": "Sizing & fit",
+          "body": "One size, adjustable from 55cm to 61cm. Runs true to size with a medium crown height."
+        }
+      },
+      {
+        "type": "accordion_item",
+        "settings": {
+          "title": "Shipping & returns",
+          "body": "Orders arrive within 5 business days. Free returns within 14 days, no questions asked — return shipping is the customer's responsibility."
+        }
+      }
+    ]
+  }
+}
+{% endschema %}

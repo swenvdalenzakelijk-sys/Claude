@@ -1,0 +1,43 @@
+<section class="section page-hero">
+  <div class="container">
+    <div class="eyebrow">{{ section.settings.eyebrow }}</div>
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}<p>{{ collection.description }}</p>{% endif %}
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="grid-3">
+      {% for product in collection.products %}
+        {% for variant in product.variants %}
+          {% render 'variant-card', product: product, variant: variant, meta_text: section.settings.card_meta_text, show_tag: false, tag_label: '' %}
+        {% endfor %}
+      {% else %}
+        <div class="card placeholder">
+          <div class="card-img"><div class="ph-ring"></div></div>
+          <div class="card-body">
+            <div class="cname">No products yet</div>
+            <div class="cmeta">Add products to this collection</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if paginate.pages > 1 %}
+      <div style="text-align:center; margin-top:40px;">
+        {{ paginate | default_pagination }}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop" },
+    { "type": "text", "id": "card_meta_text", "label": "Card meta line", "default": "Embroidered · Adjustable strap" }
+  ]
+}
+{% endschema %}

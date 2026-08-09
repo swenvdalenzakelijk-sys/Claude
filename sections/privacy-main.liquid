@@ -1,0 +1,73 @@
+<section class="section page-hero">
+  <div class="container">
+    <div class="eyebrow">{{ section.settings.hero_eyebrow }}</div>
+    <h1>{{ section.settings.hero_heading }}</h1>
+    <p>{{ section.settings.hero_subtext }}</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+
+    {% if section.settings.disclaimer != blank %}
+      <div class="disclaimer"><b>Note:</b> {{ section.settings.disclaimer }}</div>
+    {% endif %}
+
+    <div class="legal-toc">
+      <h4>On this page</h4>
+      <ol>
+        {% for block in section.blocks %}
+          <li><a href="#p{{ forloop.index }}">{{ block.settings.title }}</a></li>
+        {% endfor %}
+      </ol>
+    </div>
+
+    <div class="legal-body">
+      {% for block in section.blocks %}
+        <section id="p{{ forloop.index }}"{{ block.shopify_attributes }}>
+          <h2><span class="n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>{{ block.settings.title }}</h2>
+          {{ block.settings.body }}
+        </section>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Privacy page",
+  "settings": [
+    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Legal" },
+    { "type": "text", "id": "hero_heading", "label": "Hero heading", "default": "Privacy Policy" },
+    { "type": "textarea", "id": "hero_subtext", "label": "Hero subtext", "default": "Last updated: 9 August 2026. This explains what personal data we collect, why, and how you're in control of it." },
+    { "type": "textarea", "id": "disclaimer", "label": "Disclaimer banner", "default": "this page is a starting template covering the standard disclosures required under the GDPR for a Dutch/EU-based webshop. It is not legal advice — please have a qualified lawyer review it before publishing it live, and keep it updated as you add or remove tools." }
+  ],
+  "blocks": [
+    {
+      "type": "legal_section",
+      "name": "Legal section",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Section title" },
+        { "type": "richtext", "id": "body", "label": "Section body" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "legal_section", "settings": { "title": "Who we are", "body": "<p>This policy applies to capslock.com, operated by Capslock (KvK 87371219, VAT NL004406764B72), Weidehoek 10, 3791 RP Achterveld, Netherlands. We're the data controller for the personal data described in this policy. You can reach us at hello@capslock.com.</p>" } },
+      { "type": "legal_section", "settings": { "title": "What data we collect", "body": "<p>Order data (name, email, delivery address, phone), payment data (handled by our payment provider), account data, marketing data if you opt in, usage data via cookies, and anything you share via our contact form.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Why we collect it", "body": "<p>To fulfil your order (contract), to send marketing emails (consent), to improve our website (consent/legitimate interest), to respond to your questions (consent/legitimate interest), and to meet legal obligations such as tax record-keeping.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Cookies", "body": "<p>We use cookies and similar technologies to run our webshop, remember your cart, and understand how our site is used. Non-essential cookies only run with your consent, managed via our cookie banner.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Tools & third parties", "body": "<p>We work with a small number of trusted service providers, each receiving only the data it needs:</p><p><b>Shopify</b> — our e-commerce platform, hosts our store and processes orders and payments. Shares order, payment, and account data. See Shopify's Privacy Policy.</p><p><b>Mailchimp</b> — sends our newsletter and marketing emails. Shares email address and name if provided. See Mailchimp's Privacy Policy.</p><p><b>Google Analytics</b> — helps us understand how visitors use our site. Shares usage data, device/browser type, and approximate location. See Google's Privacy Policy.</p>" } },
+      { "type": "legal_section", "settings": { "title": "International transfers", "body": "<p>Some providers, including Google and Mailchimp, may process data outside the European Economic Area, including in the United States, under appropriate safeguards such as the European Commission's Standard Contractual Clauses.</p>" } },
+      { "type": "legal_section", "settings": { "title": "How long we keep data", "body": "<p>Order and payment data is kept for as long as required by Dutch tax law (currently 7 years). Marketing data is kept until you unsubscribe. Account data is kept while your account stays active.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Your rights", "body": "<p>Under the GDPR, you have the right to access, correct, delete, restrict, or object to processing of your data, receive it in a portable format, and withdraw consent at any time. Email hello@capslock.com to exercise any of these rights.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Data security", "body": "<p>We use industry-standard security measures, including encrypted checkout via Shopify, to protect your data against unauthorised access, loss, or misuse.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Children's privacy", "body": "<p>Capslock.com is not directed at children, and we don't knowingly collect personal data from anyone under 16.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Changes to this policy", "body": "<p>We may update this policy from time to time, for example when we add a new tool or our legal obligations change.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Contact & complaints", "body": "<p>Capslock, Weidehoek 10, 3791 RP Achterveld, Netherlands. Email: hello@capslock.com. You also have the right to lodge a complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens).</p>" } }
+    ]
+  },
+  "presets": [{ "name": "Privacy page" }]
+}
+{% endschema %}

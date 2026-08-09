@@ -1,0 +1,20 @@
+{%- comment -%}
+  Usage: {% render 'color-swatch-hex', name: variant.option1 %}
+  Outputs a hex code for common Dutch/English colour names used in the store.
+  Falls back to a neutral grey if the name isn't recognised.
+{%- endcomment -%}
+{%- assign n = name | downcase | strip -%}
+{%- case n -%}
+  {%- when 'zwart' or 'black' -%}#0b0b0c
+  {%- when 'wit' or 'white' -%}#ffffff
+  {%- when 'ivory' or 'ivoor' -%}#e3d5b8
+  {%- when 'beige' -%}#e3d5b8
+  {%- when 'groen' or 'green' -%}#4a7c59
+  {%- when 'roze' or 'pink' -%}#e8a0bd
+  {%- when 'rood' or 'red' -%}#e11d2e
+  {%- when 'blauw' or 'blue' -%}#2b4c7e
+  {%- when 'grijs' or 'grey' or 'gray' -%}#8b8b87
+  {%- when 'bruin' or 'brown' -%}#6b4a34
+  {%- when 'geel' or 'yellow' -%}#e8c547
+  {%- else -%}#c9c8c4
+{%- endcase -%}

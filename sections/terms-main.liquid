@@ -1,0 +1,76 @@
+<section class="section page-hero">
+  <div class="container">
+    <div class="eyebrow">{{ section.settings.hero_eyebrow }}</div>
+    <h1>{{ section.settings.hero_heading }}</h1>
+    <p>{{ section.settings.hero_subtext }}</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+
+    {% if section.settings.disclaimer != blank %}
+      <div class="disclaimer"><b>Note:</b> {{ section.settings.disclaimer }}</div>
+    {% endif %}
+
+    <div class="legal-toc">
+      <h4>On this page</h4>
+      <ol>
+        {% for block in section.blocks %}
+          <li><a href="#s{{ forloop.index }}">{{ block.settings.title }}</a></li>
+        {% endfor %}
+      </ol>
+    </div>
+
+    <div class="legal-body">
+      {% for block in section.blocks %}
+        <section id="s{{ forloop.index }}"{{ block.shopify_attributes }}>
+          <h2><span class="n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>{{ block.settings.title }}</h2>
+          {{ block.settings.body }}
+        </section>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Terms page",
+  "settings": [
+    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Legal" },
+    { "type": "text", "id": "hero_heading", "label": "Hero heading", "default": "Terms & Conditions" },
+    { "type": "textarea", "id": "hero_subtext", "label": "Hero subtext", "default": "Last updated: 9 August 2026. These terms apply to every order placed on capslock.com." },
+    { "type": "textarea", "id": "disclaimer", "label": "Disclaimer banner", "default": "this page is a starting template built for a Dutch/EU-based webshop and covers the standard clauses required under Dutch and EU consumer law. It is not legal advice. Please have a qualified lawyer review it before publishing it live." }
+  ],
+  "blocks": [
+    {
+      "type": "legal_section",
+      "name": "Legal section",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Section title" },
+        { "type": "richtext", "id": "body", "label": "Section body" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "legal_section", "settings": { "title": "Who we are", "body": "<p>CAPSLOCK is operated by Capslock, registered in the Netherlands under Chamber of Commerce (KvK) number 87371219 and VAT number NL004406764B72. Our registered address is Weidehoek 10, 3791 RP Achterveld, Netherlands. You can reach us at hello@capslock.com.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Definitions", "body": "<p>\"We\", \"us\", \"CAPSLOCK\" — the seller described in Section 1. \"You\", \"customer\" — the person placing an order through our webshop. \"Products\" — the caps and related items offered for sale on capslock.com. \"Agreement\" — the contract of sale formed between you and us when an order is confirmed.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Applicability", "body": "<p>These terms apply to every offer we make and every agreement formed between CAPSLOCK and a customer, unless we've agreed otherwise with you in writing. By placing an order, you accept these terms in full.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Orders & agreement", "body": "<p>An agreement is formed once we confirm your order by email. We reserve the right to refuse or cancel an order — for example in cases of suspected fraud, an out-of-stock product, or a pricing error — in which case we'll notify you and refund any payment already made.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Prices & payment", "body": "<p>All prices shown on capslock.com are in euros and include Dutch VAT. Shipping costs are shown separately at checkout. Payment is due at the time of ordering — we accept iDEAL, Bancontact, credit card, and Shop Pay.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Delivery", "body": "<p>We currently deliver to the Netherlands and Belgium. Standard orders arrive within 5 business days; Express orders placed before 15:00 arrive the next business day. Delivery times are estimates, not guarantees.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Right of withdrawal", "body": "<p>As an EU consumer, you have a statutory right to cancel your order within 14 days of receiving it, without giving a reason. Products must be returned unworn, unwashed, and in their original packaging. Return shipping costs are the customer's responsibility, except where the item is faulty, damaged, or incorrect.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Conformity & warranty", "body": "<p>We guarantee that our products conform to your order under Dutch and EU consumer law. If a product turns out to be defective, you're entitled to a repair, replacement, price reduction, or refund, as set out in the statutory conformity guarantee.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Liability", "body": "<p>Our liability for any damages arising from an agreement with you is limited to the amount you paid for the relevant order, except in cases of intent or gross negligence, or where liability cannot be limited under Dutch law.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Intellectual property", "body": "<p>All content on capslock.com — including our name, logo, product designs, photography, and text — is owned by CAPSLOCK or used with permission.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Force majeure", "body": "<p>We're not liable for any delay or failure to perform our obligations caused by circumstances beyond our reasonable control, including carrier disruptions, strikes, extreme weather, or supplier failures.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Complaints", "body": "<p>Contact us at hello@capslock.com first — we aim to resolve complaints within 5 business days. EU consumers can also use the European Commission's Online Dispute Resolution platform.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Governing law & disputes", "body": "<p>These terms are governed by the laws of the Netherlands. Any dispute that cannot be resolved directly will be submitted to the competent Dutch court.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Changes to these terms", "body": "<p>We may update these terms from time to time. The version published on capslock.com at the time you place an order is the one that applies.</p>" } },
+      { "type": "legal_section", "settings": { "title": "Contact", "body": "<p>CAPSLOCK, Weidehoek 10, 3791 RP Achterveld, Netherlands. Email: hello@capslock.com</p>" } }
+    ]
+  },
+  "presets": [{ "name": "Terms page" }]
+}
+{% endschema %}

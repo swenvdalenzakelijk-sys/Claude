@@ -1,0 +1,205 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "blocks": {
+          "announcement-bar-0": {
+            "type": "message",
+            "settings": {
+              "message": "FREE SHIPPING OVER €25"
+            }
+          },
+          "announcement-bar-1": {
+            "type": "message",
+            "settings": {
+              "message": "NEW DROP — THE CAPSLOCK CAP"
+            }
+          },
+          "announcement-bar-2": {
+            "type": "message",
+            "settings": {
+              "message": "ARRIVES IN 5 BUSINESS DAYS"
+            }
+          },
+          "announcement-bar-3": {
+            "type": "message",
+            "settings": {
+              "message": "MADE FOR THE MAINSTAGE"
+            }
+          }
+        },
+        "block_order": [
+          "announcement-bar-0",
+          "announcement-bar-1",
+          "announcement-bar-2",
+          "announcement-bar-3"
+        ],
+        "settings": {}
+      },
+      "header": {
+        "type": "header",
+        "blocks": {
+          "header-0": {
+            "type": "nav_link",
+            "settings": {
+              "label": "Shop",
+              "link": "/collections/all"
+            }
+          },
+          "header-1": {
+            "type": "nav_link",
+            "settings": {
+              "label": "About",
+              "link": "/pages/about-us"
+            }
+          },
+          "header-2": {
+            "type": "nav_link",
+            "settings": {
+              "label": "FAQ",
+              "link": "/pages/faq"
+            }
+          },
+          "header-3": {
+            "type": "nav_link",
+            "settings": {
+              "label": "Contact",
+              "link": "/pages/contact"
+            }
+          }
+        },
+        "block_order": [
+          "header-0",
+          "header-1",
+          "header-2",
+          "header-3"
+        ],
+        "settings": {
+          "logo_text": "CAPSLOCK",
+          "logo_height": 32
+        }
+      },
+      "collection-grid": {
+        "type": "collection-grid",
+        "settings": {
+          "heading": "Shop the collection",
+          "subtext": "Every cap, one loud statement. New designs land throughout the festival season.",
+          "collection": "ss26",
+          "max_products": 6,
+          "card_meta_text": "Embroidered · Adjustable strap",
+          "show_bestseller_tag": true,
+          "bestseller_label": "Bestseller"
+        }
+      },
+      "story-band": {
+        "type": "story-band",
+        "settings": {
+          "eyebrow": "Our story",
+          "heading": "Built on the barrier, not behind a desk",
+          "body": "CAPSLOCK started as a running joke in a group chat — when something really matters, you type it in all caps. So we put that energy on a cap: the no-smoking icon everyone ignores, turned into the one accessory everyone actually wants. No hype drops, no gimmicks. Just caps loud enough to survive a weekend of sets.",
+          "button_label": "Shop the collection",
+          "button_link": "/collections/all"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "shop_link",
+            "settings": {
+              "label": "All caps",
+              "link": "/collections/all"
+            }
+          },
+          "footer-1": {
+            "type": "shop_link",
+            "settings": {
+              "label": "New arrivals",
+              "link": "/collections/all"
+            }
+          },
+          "footer-2": {
+            "type": "shop_link",
+            "settings": {
+              "label": "Best sellers",
+              "link": "/collections/all"
+            }
+          },
+          "footer-3": {
+            "type": "support_link",
+            "settings": {
+              "label": "Sizing & fit",
+              "link": "/pages/faq"
+            }
+          },
+          "footer-4": {
+            "type": "support_link",
+            "settings": {
+              "label": "Shipping & delivery",
+              "link": "/pages/shipping-delivery"
+            }
+          },
+          "footer-5": {
+            "type": "support_link",
+            "settings": {
+              "label": "Returns",
+              "link": "/pages/return-policy"
+            }
+          },
+          "footer-6": {
+            "type": "support_link",
+            "settings": {
+              "label": "Contact us",
+              "link": "/pages/contact"
+            }
+          },
+          "footer-7": {
+            "type": "social_link",
+            "settings": {
+              "label": "Instagram",
+              "link": "#"
+            }
+          },
+          "footer-8": {
+            "type": "social_link",
+            "settings": {
+              "label": "TikTok",
+              "link": "#"
+            }
+          }
+        },
+        "block_order": [
+          "footer-0",
+          "footer-1",
+          "footer-2",
+          "footer-3",
+          "footer-4",
+          "footer-5",
+          "footer-6",
+          "footer-7",
+          "footer-8"
+        ],
+        "settings": {
+          "logo_text": "CAPSLOCK",
+          "tagline": "Festival caps, made to be worn to the front row and back. Designed in the Netherlands, embroidered to last.",
+          "shop_heading": "Shop",
+          "support_heading": "Support",
+          "follow_heading": "Follow",
+          "copyright": "© 2026 CAPSLOCK. All rights reserved.",
+          "shipping_note": "Shipping to the Netherlands & Belgium"
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}

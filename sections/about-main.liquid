@@ -1,0 +1,92 @@
+<section class="section page-hero">
+  <div class="container">
+    <div class="eyebrow">{{ section.settings.hero_eyebrow }}</div>
+    <h1>{{ section.settings.hero_heading }}</h1>
+    <p>{{ section.settings.hero_subtext }}</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-copy">
+        <h2>{{ section.settings.story_heading }}</h2>
+        {{ section.settings.story_body }}
+      </div>
+      <div class="story-visual">
+        <div class="ring"></div>
+        {% if section.settings.story_image %}
+          {{ section.settings.story_image | image_url: width: 700 | image_tag: alt: section.settings.story_heading }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="ring-big"></div>
+  <div class="container band-inner" style="max-width:820px;">
+    <div class="eyebrow">{{ section.settings.mission_eyebrow }}</div>
+    <h2>{{ section.settings.mission_heading }}</h2>
+    <p>{{ section.settings.mission_body }}</p>
+
+    <div class="pillars">
+      {% for block in section.blocks %}
+        {% if block.type == 'pillar' %}
+          <div class="pillar"{{ block.shopify_attributes }}>
+            <span class="num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.body }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>{{ section.settings.cta_heading }}</h2>
+    <p>{{ section.settings.cta_body }}</p>
+    <a href="{{ section.settings.cta_link }}" class="btn btn-primary">{{ section.settings.cta_label }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About page",
+  "settings": [
+    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "The backstory" },
+    { "type": "text", "id": "hero_heading", "label": "Hero heading", "default": "Some things deserve to be said in all caps" },
+    { "type": "textarea", "id": "hero_subtext", "label": "Hero subtext", "default": "CAPSLOCK makes festival caps built for the front row, the pit, and the long walk back to the campsite." },
+    { "type": "text", "id": "story_heading", "label": "Story heading", "default": "Our story" },
+    { "type": "richtext", "id": "story_body", "label": "Story body", "default": "<p>CAPSLOCK started the way most good ideas do — in a group chat, at 2am, after a festival weekend that ran three days too long.</p><p>One of us kept typing everything IN ALL CAPS. Not because we were shouting — because some things, the last song of the night, the queue for the exit gate, losing the tent for the third year running, just deserve that kind of energy.</p><p>Then we noticed it: the no-smoking icon on every festival gate. Nobody reads it. Everybody ignores it. So we put it on a cap instead, gave it a wink, and CAPSLOCK was born.</p><p>No investors, no hype drops, no queue outside a pop-up. Just a cap that survives a weekend in the pit and looks better for it.</p>" },
+    { "type": "image_picker", "id": "story_image", "label": "Story image" },
+    { "type": "text", "id": "mission_eyebrow", "label": "Mission eyebrow", "default": "Our mission" },
+    { "type": "text", "id": "mission_heading", "label": "Mission heading", "default": "Built loud. Built to last." },
+    { "type": "textarea", "id": "mission_body", "label": "Mission body", "default": "We make our caps properly. Every CAPSLOCK cap is cut from heavyweight cotton twill, stitched to survive a crowd surf and a thunderstorm, and finished with an embroidered patch that won't peel after one wash. No seasonal filler, no fast-fashion caps — just designs you'll actually reach for, festival after festival." },
+    { "type": "text", "id": "cta_heading", "label": "CTA heading", "default": "Ready to say it in all caps?" },
+    { "type": "textarea", "id": "cta_body", "label": "CTA body", "default": "Shop the cap that started it all, plus every design that's followed since." },
+    { "type": "text", "id": "cta_label", "label": "CTA button label", "default": "Shop all caps" },
+    { "type": "url", "id": "cta_link", "label": "CTA button link", "default": "/collections/all" }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "body", "label": "Body" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "pillar", "settings": { "title": "Made to be worn hard", "body": "Heavyweight twill and reinforced stitching, tested on actual festival grounds — not a photo studio." } },
+      { "type": "pillar", "settings": { "title": "No hype, no gimmicks", "body": "Every design in stock, no queuing for a drop." } },
+      { "type": "pillar", "settings": { "title": "Designed for the crowd", "body": "Adjustable to fit under a bucket hat, over a bandana, or backwards after midnight. One size, every head." } }
+    ]
+  },
+  "presets": [{ "name": "About page" }]
+}
+{% endschema %}
