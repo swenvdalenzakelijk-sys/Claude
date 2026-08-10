@@ -49,7 +49,7 @@
             <textarea id="ContactFormMessage" name="contact[body]" placeholder="What's on your mind?" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
           </div>
           <button type="submit" class="btn btn-primary form-submit">{{ section.settings.submit_label }}</button>
-          <p class="form-note">By submitting, you agree to our <a href="{{ section.settings.privacy_link }}" style="text-decoration:underline;">Privacy Policy</a>.</p>
+          <p class="form-note">By submitting, you agree to our <a href="{{ section.settings.privacy_link | default: '/pages/privacy-policy' }}" style="text-decoration:underline;">Privacy Policy</a>.</p>
         {% endform %}
       </div>
     </div>
@@ -105,8 +105,7 @@
     {
       "type": "url",
       "id": "privacy_link",
-      "label": "Privacy policy link",
-      "default": "/pages/privacy-policy"
+      "label": "Privacy policy link"
     }
   ],
   "blocks": [
