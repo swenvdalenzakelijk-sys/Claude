@@ -5,6 +5,22 @@
 (function () {
   'use strict';
 
+  // Move drawers & overlays to <body> so no transformed ancestor
+  // (Shopify section wrappers) can trap their position:fixed.
+  function reparentToBody() {
+    ['menuOverlay', 'mobileMenu', 'cartOverlay', 'cartDrawer'].forEach(function (id) {
+      const el = document.getElementById(id);
+      if (el && el.parentNode !== document.body) {
+        document.body.appendChild(el);
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', reparentToBody);
+  } else {
+    reparentToBody();
+  }
+
   function q(id) { return document.getElementById(id); }
 
   function closeMenu() {
