@@ -1,0 +1,79 @@
+<section class="section reviews-section">
+  <div class="container">
+    <div class="section-head">
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="reviews-summary">
+        <div class="stars">★★★★★</div>
+        <span>{{ section.settings.summary_text }}</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'review' %}
+          <div class="review-card" {{ block.shopify_attributes }}>
+            <div class="stars">
+              {% assign r = block.settings.rating | plus: 0 %}
+              {% for i in (1..5) %}{% if i <= r %}★{% else %}☆{% endif %}{% endfor %}
+            </div>
+            <p class="review-body">{{ block.settings.body }}</p>
+            <div class="review-author">
+              <span class="review-name">{{ block.settings.name }}</span>
+              {% if block.settings.verified %}<span class="review-verified">✓ Verified buyer</span>{% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section .section-head { flex-wrap:wrap; gap:16px; }
+  .reviews-summary { display:flex;align-items:center;gap:12px;font-size:14px;color:var(--grey); }
+  .reviews-summary .stars { color:var(--red);font-size:18px;letter-spacing:2px; }
+  .reviews-grid {
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  }
+  .review-card {
+    background:var(--white);border:1px solid var(--hairline);border-radius:16px;padding:26px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .review-card .stars { color:var(--red);font-size:16px;letter-spacing:2px; }
+  .review-body { font-size:14.5px;line-height:1.7;color:var(--ink);flex:1; }
+  .review-author { display:flex;flex-direction:column;gap:2px; }
+  .review-name { font-weight:700;font-size:13.5px; }
+  .review-verified { font-size:11.5px;color:var(--grey); }
+  @media(max-width:860px){ .reviews-grid{ grid-template-columns:1fr; } }
+</style>
+
+{% schema %}
+{
+  "name": "Reviews",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What the crowd says" },
+    { "type": "text", "id": "summary_text", "label": "Summary text", "default": "Rated 5/5 by festival-goers" }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "rating", "label": "Rating", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "body", "label": "Review text" },
+        { "type": "text", "id": "name", "label": "Reviewer name" },
+        { "type": "checkbox", "id": "verified", "label": "Verified buyer badge", "default": true }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "review", "settings": { "rating": 5, "body": "Ordered on a Tuesday, wore it to the festival that weekend. Delivery was ridiculously fast.", "name": "Sanne V.", "verified": true } },
+      { "type": "review", "settings": { "rating": 5, "body": "The quality is unreal for the price — thick twill, the embroidery hasn't budged after three wears and a wash.", "name": "Daan K.", "verified": true } },
+      { "type": "review", "settings": { "rating": 5, "body": "Been repping CAPSLOCK all summer. Everyone at the campsite asked where I got it. Obsessed with this brand.", "name": "Fleur M.", "verified": true } },
+      { "type": "review", "settings": { "rating": 5, "body": "Fits perfectly, arrived in a couple of days, and the design actually turns heads. Exactly what I wanted.", "name": "Tim B.", "verified": true } },
+      { "type": "review", "settings": { "rating": 5, "body": "Second cap I've bought from them. Fast shipping every time and the quality keeps me coming back.", "name": "Isa R.", "verified": true } }
+    ]
+  }
+}
+{% endschema %}

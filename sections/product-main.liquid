@@ -65,8 +65,8 @@
 
         <h1>{{ product.title }}</h1>
 
-        {% if section.settings.subtitle != blank %}
-          <p class="psub">{{ section.settings.subtitle }}</p>
+        {% if product.description != blank %}
+          <div class="psub">{{ product.description }}</div>
         {% endif %}
 
 
@@ -281,7 +281,7 @@
           <h3>{{ section.settings.note_heading }}</h3>
 
           <div>
-            {{ product.description }}
+            {{ section.settings.note_body }}
           </div>
 
 
@@ -387,7 +387,7 @@
     form="product-form"
     class="btn btn-primary"
     id="stickyAtcBtn"
-    {% unless sticky_available %}disabled onclick="document.getElementById('notifyRow') && document.getElementById('notifyRow').scrollIntoView({behavior:'smooth',block:'center'})"{% endunless %}
+    {% unless sticky_available %}onclick="capslockScrollToNotify()"{% endunless %}
   >
     {% if sticky_available %}{{ section.settings.add_to_cart_label }}{% else %}Sold out — notify me{% endif %}
   </button>
@@ -730,10 +730,10 @@
       "default": "CAPSLOCK — Festival Caps"
     },
     {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Subtitle under title",
-      "default": "Six-panel dad cap with embroidered patch"
+      "type": "textarea",
+      "id": "note_body",
+      "label": "Designer's note text",
+      "default": "Six-panel dad cap with embroidered patch, cut from heavyweight brushed cotton twill and finished with a metal adjustable buckle. Built for the front row and the long walk back."
     },
     {
       "type": "text",
