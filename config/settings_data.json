@@ -198,6 +198,177 @@
           "copyright": "© 2026 CAPSLOCK. All rights reserved.",
           "shipping_note": "Shipping to the Netherlands & Belgium"
         }
+      },
+      "collection-main": {
+        "type": "collection-main",
+        "settings": {
+          "eyebrow": "Shop",
+          "card_meta_text": "Embroidered · Adjustable strap"
+        }
+      },
+      "product-main": {
+        "type": "product-main",
+        "blocks": {
+          "product-main-0": {
+            "type": "trust_item",
+            "settings": {
+              "text": "Arrives within 5 business days"
+            }
+          },
+          "product-main-1": {
+            "type": "trust_item",
+            "settings": {
+              "text": "14 days to change your mind"
+            }
+          },
+          "product-main-2": {
+            "type": "trust_item",
+            "settings": {
+              "text": "Free shipping over €25 (NL & BE)"
+            }
+          },
+          "product-main-3": {
+            "type": "spec_item",
+            "settings": {
+              "text": "Structured 6-panel crown, low profile"
+            }
+          },
+          "product-main-4": {
+            "type": "spec_item",
+            "settings": {
+              "text": "Heavyweight brushed cotton twill"
+            }
+          },
+          "product-main-5": {
+            "type": "spec_item",
+            "settings": {
+              "text": "Embroidered patch, metal adjustable buckle"
+            }
+          },
+          "product-main-6": {
+            "type": "accordion_item",
+            "settings": {
+              "title": "Details & materials",
+              "body": "100% brushed cotton twill, structured front panel, curved peak, metal buckle closure with matching eyelets."
+            }
+          },
+          "product-main-7": {
+            "type": "accordion_item",
+            "settings": {
+              "title": "Sizing & fit",
+              "body": "One size, adjustable from 55cm to 61cm. Runs true to size with a medium crown height."
+            }
+          },
+          "product-main-8": {
+            "type": "accordion_item",
+            "settings": {
+              "title": "Shipping & returns",
+              "body": "Orders arrive within 5 business days. Free returns within 14 days, no questions asked — return shipping is the customer's responsibility."
+            }
+          }
+        },
+        "block_order": [
+          "product-main-0",
+          "product-main-1",
+          "product-main-2",
+          "product-main-3",
+          "product-main-4",
+          "product-main-5",
+          "product-main-6",
+          "product-main-7",
+          "product-main-8"
+        ],
+        "settings": {
+          "brand_label": "CAPSLOCK — Festival Caps",
+          "note_body": "Six-panel dad cap with embroidered patch, cut from heavyweight brushed cotton twill and finished with a metal adjustable buckle. Built for the front row and the long walk back.",
+          "fit_label": "One size",
+          "fit_detail": "fits 55–61cm",
+          "add_to_cart_label": "Add to cart",
+          "sold_out_label": "Sold out",
+          "notify_label": "This colour is sold out — want to know when it's back?",
+          "notify_placeholder": "hello@capslock.com",
+          "notify_button": "Notify me",
+          "notify_success": "Thanks — we'll email you the moment it's back in stock.",
+          "note_heading": "Designer's note",
+          "show_spec_list": true,
+          "handle_label": "Product handle",
+          "back_link": ""
+        }
+      },
+      "reviews": {
+        "type": "reviews",
+        "blocks": {
+          "reviews-0": {
+            "type": "review",
+            "settings": {
+              "rating": 5,
+              "body": "Ordered on a Tuesday, wore it to the festival that weekend. Delivery was ridiculously fast.",
+              "name": "Sanne V.",
+              "verified": true
+            }
+          },
+          "reviews-1": {
+            "type": "review",
+            "settings": {
+              "rating": 5,
+              "body": "The quality is unreal for the price — thick twill, the embroidery hasn't budged after three wears and a wash.",
+              "name": "Daan K.",
+              "verified": true
+            }
+          },
+          "reviews-2": {
+            "type": "review",
+            "settings": {
+              "rating": 5,
+              "body": "Been repping CAPSLOCK all summer. Everyone at the campsite asked where I got it. Obsessed with this brand.",
+              "name": "Fleur M.",
+              "verified": true
+            }
+          },
+          "reviews-3": {
+            "type": "review",
+            "settings": {
+              "rating": 5,
+              "body": "Fits perfectly, arrived in a couple of days, and the design actually turns heads. Exactly what I wanted.",
+              "name": "Tim B.",
+              "verified": true
+            }
+          },
+          "reviews-4": {
+            "type": "review",
+            "settings": {
+              "rating": 5,
+              "body": "Second cap I've bought from them. Fast shipping every time and the quality keeps me coming back.",
+              "name": "Isa R.",
+              "verified": true
+            }
+          }
+        },
+        "block_order": [
+          "reviews-0",
+          "reviews-1",
+          "reviews-2",
+          "reviews-3",
+          "reviews-4"
+        ],
+        "settings": {
+          "heading": "What the crowd says",
+          "summary_text": "Rated 5/5 by festival-goers"
+        }
+      },
+      "home-hero": {
+        "type": "home-hero",
+        "settings": {
+          "eyebrow": "Festival season essentials",
+          "heading_line_1": "CAPS",
+          "heading_line_2": "LOCK",
+          "heading_line_3": "ON.",
+          "subtext": "Embroidered dad caps built for long sets and longer nights. Every design finished with premium stitching and an adjustable strap.",
+          "primary_label": "Shop all caps",
+          "primary_link": "",
+          "secondary_label": "Our story",
+          "secondary_link": ""
+        }
       }
     },
     "content_for_index": []
