@@ -95,9 +95,9 @@
           "heading": "Shop the collection",
           "subtext": "Every cap, one loud statement. New designs land throughout the festival season.",
           "collection": "ss26",
-          "max_products": 6,
+          "max_products": 3,
           "card_meta_text": "Embroidered · Adjustable strap",
-          "show_bestseller_tag": true,
+          "show_bestseller_tag": false,
           "bestseller_label": "Bestseller"
         }
       },
@@ -287,7 +287,7 @@
           "add_to_cart_label": "Add to cart",
           "sold_out_label": "Sold out",
           "notify_label": "This colour is sold out — want to know when it's back?",
-          "notify_placeholder": "hello@capslock.com",
+          "notify_placeholder": "your@email.com",
           "notify_button": "Notify me",
           "notify_success": "Thanks — we'll email you the moment it's back in stock.",
           "note_heading": "Designer's note",
@@ -366,9 +366,223 @@
           "heading_line_3": "ON.",
           "subtext": "Embroidered dad caps built for long sets and longer nights. Every design finished with premium stitching and an adjustable strap.",
           "primary_label": "Shop all caps",
-          "primary_link": "",
+          "primary_link": "shopify://collections",
           "secondary_label": "Our story",
-          "secondary_link": ""
+          "secondary_link": "shopify://pages/about-us"
+        }
+      },
+      "error-404": {
+        "type": "error-404",
+        "settings": {
+          "code": "404",
+          "heading": "Wrong key, wrong page",
+          "body": "This page doesn't exist — but the caps still do. Let's get you back on track.",
+          "primary_label": "Back to homepage",
+          "secondary_label": "Shop all caps",
+          "secondary_link": "shopify://collections/all"
+        }
+      },
+      "search-main": {
+        "type": "search-main",
+        "settings": {
+          "eyebrow": "Search",
+          "heading": "What are you looking for?",
+          "results_heading": "Results for",
+          "placeholder": "Search caps...",
+          "button_label": "Search",
+          "no_results_message": "No results found for"
+        }
+      },
+      "about-main": {
+        "type": "about-main",
+        "blocks": {
+          "about-main-0": {
+            "type": "pillar",
+            "settings": {
+              "title": "Made to be worn hard",
+              "body": "Heavyweight twill and reinforced stitching, tested on actual festival grounds — not a photo studio."
+            }
+          },
+          "about-main-1": {
+            "type": "pillar",
+            "settings": {
+              "title": "No hype, no gimmicks",
+              "body": "Every design in stock, no queuing for a drop."
+            }
+          },
+          "about-main-2": {
+            "type": "pillar",
+            "settings": {
+              "title": "Designed for the crowd",
+              "body": "Adjustable to fit under a bucket hat, over a bandana, or backwards after midnight. One size, every head."
+            }
+          }
+        },
+        "block_order": [
+          "about-main-0",
+          "about-main-1",
+          "about-main-2"
+        ],
+        "settings": {
+          "hero_eyebrow": "The backstory",
+          "hero_heading": "Some things deserve to be said in all caps",
+          "hero_subtext": "CAPSLOCK makes festival caps built for the front row, the pit, and the long walk back to the campsite.",
+          "story_heading": "Our story",
+          "story_body": "<p>CAPSLOCK started the way most good ideas do — in a group chat, at 2am, after a festival weekend that ran three days too long.</p><p>One of us kept typing everything IN ALL CAPS. Not because we were shouting — because some things, the last song of the night, the queue for the exit gate, losing the tent for the third year running, just deserve that kind of energy.</p><p>Then we noticed it: the no-smoking icon on every festival gate. Nobody reads it. Everybody ignores it. So we put it on a cap instead, gave it a wink, and CAPSLOCK was born.</p><p>No investors, no hype drops, no queue outside a pop-up. Just a cap that survives a weekend in the pit and looks better for it.</p>",
+          "mission_eyebrow": "Our mission",
+          "mission_heading": "Built loud. Built to last.",
+          "mission_body": "We make our caps properly. Every CAPSLOCK cap is cut from heavyweight cotton twill, stitched to survive a crowd surf and a thunderstorm, and finished with an embroidered patch that won't peel after one wash. No seasonal filler, no fast-fashion caps — just designs you'll actually reach for, festival after festival.",
+          "cta_heading": "Ready to say it in all caps?",
+          "cta_body": "Shop the cap that started it all, plus every design that's followed since.",
+          "cta_label": "Shop all caps",
+          "cta_link": "shopify://collections/all"
+        }
+      },
+      "faq-main": {
+        "type": "faq-main",
+        "blocks": {
+          "faq-main-0": {
+            "type": "faq_item",
+            "settings": {
+              "group": "Shipping",
+              "question": "How long does delivery take?",
+              "answer": "Standard orders arrive within 5 business days. Need it faster? Choose Express at checkout for next-day delivery on orders placed before 15:00."
+            }
+          },
+          "faq-main-1": {
+            "type": "faq_item",
+            "settings": {
+              "group": "Shipping",
+              "question": "Is shipping free?",
+              "answer": "Yes — shipping is free on all orders over €25 within the Netherlands and Belgium."
+            }
+          },
+          "faq-main-2": {
+            "type": "faq_item",
+            "settings": {
+              "group": "Shipping",
+              "question": "Do you ship outside the Netherlands?",
+              "answer": "We currently ship to the Netherlands and Belgium only."
+            }
+          },
+          "faq-main-3": {
+            "type": "faq_item",
+            "settings": {
+              "group": "Returns",
+              "question": "What's your return policy?",
+              "answer": "You have 14 days from delivery to return your cap, no questions asked. It just needs to be unworn, unwashed, and in its original packaging."
+            }
+          },
+          "faq-main-4": {
+            "type": "faq_item",
+            "settings": {
+              "group": "Returns",
+              "question": "How do I start a return?",
+              "answer": "No need to email us — log in to your account, find your order, and select \"Start a return.\" Return shipping costs are the customer's responsibility."
+            }
+          },
+          "faq-main-5": {
+            "type": "faq_item",
+            "settings": {
+              "group": "Returns",
+              "question": "Can I exchange for a different colour?",
+              "answer": "Yes — but exchanges are handled by email rather than through your account. Email hello@capslock.com with your order number and the colour you'd like."
+            }
+          },
+          "faq-main-6": {
+            "type": "faq_item",
+            "settings": {
+              "group": "Sizing",
+              "question": "What sizes are available?",
+              "answer": "Every CAPSLOCK cap is one size, adjustable from 55cm to 61cm, so it fits most adult head sizes."
+            }
+          },
+          "faq-main-7": {
+            "type": "faq_item",
+            "settings": {
+              "group": "Sizing",
+              "question": "Does the cap run true to size?",
+              "answer": "Yes — with a medium crown height. The metal buckle strap lets you fine-tune the fit either way."
+            }
+          },
+          "faq-main-8": {
+            "type": "faq_item",
+            "settings": {
+              "group": "Payment",
+              "question": "What payment methods do you accept?",
+              "answer": "We accept iDEAL, Bancontact, credit card, and Shop Pay at checkout."
+            }
+          },
+          "faq-main-9": {
+            "type": "faq_item",
+            "settings": {
+              "group": "Payment",
+              "question": "Is my payment information secure?",
+              "answer": "Yes — all payments are processed securely through Shopify's encrypted checkout."
+            }
+          }
+        },
+        "block_order": [
+          "faq-main-0",
+          "faq-main-1",
+          "faq-main-2",
+          "faq-main-3",
+          "faq-main-4",
+          "faq-main-5",
+          "faq-main-6",
+          "faq-main-7",
+          "faq-main-8",
+          "faq-main-9"
+        ],
+        "settings": {
+          "hero_eyebrow": "Frequently asked",
+          "hero_heading": "Questions? We've got answers, in all caps",
+          "hero_subtext": "Everything you need to know about shipping, returns, sizing, and payment.",
+          "cta_heading": "Still stuck?",
+          "cta_body": "We're one message away — we reply within 1 business day.",
+          "cta_label": "Contact us",
+          "cta_link": ""
+        }
+      },
+      "contact-main": {
+        "type": "contact-main",
+        "blocks": {
+          "contact-main-0": {
+            "type": "info_item",
+            "settings": {
+              "label": "Email",
+              "value": "hello@capslock.com"
+            }
+          },
+          "contact-main-1": {
+            "type": "info_item",
+            "settings": {
+              "label": "Response time",
+              "value": "Within 1 business day, Mon–Fri"
+            }
+          },
+          "contact-main-2": {
+            "type": "info_item",
+            "settings": {
+              "label": "Based in",
+              "value": "Designed and shipped from the Netherlands"
+            }
+          }
+        },
+        "block_order": [
+          "contact-main-0",
+          "contact-main-1",
+          "contact-main-2"
+        ],
+        "settings": {
+          "hero_eyebrow": "Get in touch",
+          "hero_heading": "Say it in all caps, or don't — we'll still hear you",
+          "hero_subtext": "Questions about an order, sizing, or a festival collab? Drop us a message and we'll get back to you within 1 business day.",
+          "side_heading": "Other ways to reach us",
+          "side_body": "Prefer not to fill in a form? Here's where else to find us — we check all of these daily.",
+          "submit_label": "Send message",
+          "success_message": "Thanks — your message is on its way. We'll reply within 1 business day.",
+          "privacy_link": ""
         }
       }
     },
