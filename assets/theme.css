@@ -873,8 +873,8 @@
 }
 
 /* ---------- Space between designer's note and summary/accordion ---------- */
-.product-info .note { margin-bottom:38px; }
-.product-info .accordion { margin-top:28px; }
+.product-info .note { margin-bottom:38px; padding-bottom:40px; border-bottom:1px solid var(--hairline); }
+.product-info .accordion { margin-top:40px; }
 
 /* ---------- Product rating below add to cart ---------- */
 .product-rating {
@@ -894,3 +894,6 @@
   text-transform:uppercase; letter-spacing:.02em; color:var(--ink);
   display:inline-block;
 }
+
+/* ---------- Homepage grid CTA button ---------- */
+.grid-cta { text-align:center; margin-top:44px; }
