@@ -460,6 +460,34 @@
 
 
   /*
+   * SCROLL TO NOTIFY BOX (used by sticky sold-out button)
+   */
+  function capslockScrollToNotify() {
+    const n = document.getElementById('notifyRow');
+    if (n) {
+      n.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const input = n.querySelector('input[type="email"]');
+      if (input) { setTimeout(function () { input.focus(); }, 400); }
+    }
+  }
+  window.capslockScrollToNotify = capslockScrollToNotify;
+
+
+  /*
+   * SWAP MAIN IMAGE (used by gallery thumbnails)
+   */
+  function capslockSetMainImage(url, thumb) {
+    const img = document.getElementById('mainImg');
+    if (img) { img.src = url; img.srcset = url; }
+    document.querySelectorAll('.gallery-thumb').forEach(function (t) {
+      t.classList.remove('active');
+    });
+    if (thumb) { thumb.classList.add('active'); }
+  }
+  window.capslockSetMainImage = capslockSetMainImage;
+
+
+  /*
    * VARIANT SELECTOR
    */
 
