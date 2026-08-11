@@ -12,6 +12,10 @@
         <div class="gallery-main">
           <div class="ghost-ring"></div>
 
+          {% unless product.selected_or_first_available_variant.available %}
+            <span class="tag-soldout gallery-soldout" id="gallerySoldout">Sold out</span>
+          {% endunless %}
+
           {% if product.selected_or_first_available_variant.featured_image %}
             {% assign main_img = product.selected_or_first_available_variant.featured_image %}
           {% else %}
@@ -31,23 +35,18 @@
 
         <div class="gallery-thumbs">
 
-          {% for variant in product.variants %}
+          {% for image in product.images %}
 
             <div
-              class="{% if variant.id == product.selected_or_first_available_variant.id %}active{% endif %}"
-              data-variant-id="{{ variant.id }}"
-              onclick="capslockSetVariant({{ variant.id }})"
+              class="gallery-thumb{% if image == main_img %} active{% endif %}"
+              onclick="capslockSetMainImage('{{ image | image_url: width: 900 }}', this)"
             >
-              {% assign thumb_image = variant.featured_image | default: product.featured_image %}
-
-              {% if thumb_image %}
-                {{
-                  thumb_image
-                  | image_url: width: 150
-                  | image_tag:
-                    alt: variant.title
-                }}
-              {% endif %}
+              {{
+                image
+                | image_url: width: 150
+                | image_tag:
+                  alt: product.title
+              }}
             </div>
 
           {% endfor %}
@@ -274,6 +273,11 @@
           {% endfor %}
 
         </ul>
+
+        <div class="product-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">4.8/5 — loved by festival-goers</span>
+        </div>
 
 
         <div class="note">

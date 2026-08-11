@@ -81,42 +81,31 @@
   /* ---------- hero ---------- */
   .hero{
     position:relative;
-    display:grid;grid-template-columns:1.05fr .95fr;align-items:center;
-    min-height:88vh;
-    max-width:1180px;margin:0 auto;padding:0 24px;
-    gap:20px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+    max-width:1180px;margin:0 auto;padding:80px 24px 40px;
+    gap:0;
   }
-  .hero-ring{
-    position:absolute;
-    right:-6%;top:50%;transform:translateY(-50%);
-    width:640px;height:640px;border-radius:50%;
-    border:3px solid rgba(11,11,12,0.08);
-    z-index:0;
-  }
-  .hero-ring::before{
-    content:"";position:absolute;left:50%;top:50%;width:900px;height:3px;
-    background:rgba(11,11,12,0.08);transform:translate(-50%,-50%) rotate(-45deg);
-  }
-  .hero-copy{position:relative;z-index:2;}
+  .hero-ring{ display:none; }
+  .hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;}
   .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
+    display:inline-flex;align-items:center;gap:8px;justify-content:center;
     font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;
     color:var(--red);margin-bottom:22px;
   }
   .eyebrow::before{content:"";width:7px;height:7px;background:var(--red);border-radius:50%;display:inline-block;}
   .hero h1{
     font-family:var(--display);
-    font-size:clamp(52px,8vw,104px);
-    line-height:.92;
+    font-size:clamp(56px,9vw,120px);
+    line-height:.9;
     letter-spacing:.01em;
     text-transform:uppercase;
   }
   .hero h1 em{font-style:normal;color:var(--red);}
   .hero p{
-    max-width:420px;margin:26px 0 34px;
-    font-size:16px;line-height:1.65;color:#3a3a38;
+    max-width:520px;margin:26px auto 34px;
+    font-size:16px;line-height:1.7;color:var(--grey);
   }
-  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center;}
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:8px;
     padding:16px 30px;border-radius:100px;
@@ -127,14 +116,13 @@
   .btn-primary:hover{background:var(--red);transform:translateY(-2px);}
   .btn-outline{border:1.4px solid var(--ink);color:var(--ink);}
   .btn-outline:hover{border-color:var(--red);color:var(--red);}
-  .hero-visual{position:relative;z-index:1;}
+  .hero-visual{position:relative;z-index:1;margin-top:20px;width:100%;max-width:560px;}
   .hero-visual img{
     width:100%;
-    filter:drop-shadow(0 40px 60px rgba(11,11,12,0.18));
-    transform:rotate(-6deg);
+    border-radius:22px;
   }
   .hero-badges{
-    display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;
+    display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;justify-content:center;
   }
   .pill{
     background:var(--white);border:1px solid var(--hairline);
@@ -300,8 +288,8 @@
   }
   .acc-head .plus{font-size:18px;font-weight:400;transition:transform .25s ease;color:var(--red);}
   .acc-item.open .plus{transform:rotate(45deg);}
-  .acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
-  .acc-item.open .acc-body{max-height:220px;}
+  .acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .acc-item.open .acc-body{max-height:600px;}
   .acc-body p{padding:0 2px 20px;font-size:14px;color:#4a4a48;line-height:1.7;}
 
   @media(max-width:900px){
@@ -878,3 +866,31 @@
 .sticky-atc.show { transform:translateY(0); }
 .sticky-atc button:disabled { background:var(--grey);cursor:default; }
 
+
+/* ---------- Product gallery sold-out badge ---------- */
+.gallery-soldout {
+  position:absolute; top:16px; right:16px; z-index:5;
+}
+
+/* ---------- Space between designer's note and summary/accordion ---------- */
+.product-info .note { margin-bottom:38px; }
+.product-info .accordion { margin-top:28px; }
+
+/* ---------- Product rating below add to cart ---------- */
+.product-rating {
+  display:flex; align-items:center; gap:10px; margin-bottom:30px;
+  padding-top:20px; border-top:1px solid var(--hairline);
+}
+.product-rating .stars { color:var(--red); font-size:16px; letter-spacing:2px; }
+.product-rating .rating-text { font-size:13px; color:var(--grey); font-weight:600; }
+
+/* ---------- Collection end message ---------- */
+.collection-end {
+  margin-top:70px; padding-top:50px; border-top:1px solid var(--hairline);
+  text-align:center;
+}
+.collection-end span {
+  font-family:var(--display); font-size:clamp(28px,5vw,56px);
+  text-transform:uppercase; letter-spacing:.02em; color:var(--ink);
+  display:inline-block;
+}

@@ -128,6 +128,13 @@ function capslockScrollToNotify() {
   }
 }
 
+function capslockSetMainImage(url, thumb) {
+  const img = document.getElementById('mainImg');
+  if (img) img.src = url;
+  document.querySelectorAll('.gallery-thumb').forEach(function (t) { t.classList.remove('active'); });
+  if (thumb) thumb.classList.add('active');
+}
+
 function capslockSetVariant(variantId) {
   const variant = (window.CAPSLOCK_VARIANTS || CAPSLOCK_VARIANTS).find(v => v.id === variantId);
   if (!variant) return;

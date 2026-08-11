@@ -35,11 +35,11 @@
     </div>
   </div>
 
-  <div class="hero-visual">
-    {% if section.settings.image %}
+  {% if section.settings.image %}
+    <div class="hero-visual">
       {{ section.settings.image | image_url: width: 900 | image_tag: alt: section.settings.heading_line_1 }}
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 </section>
 
 {% schema %}

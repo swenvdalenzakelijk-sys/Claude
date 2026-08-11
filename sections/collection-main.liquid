@@ -9,11 +9,29 @@
 <section class="section" style="padding-top:0;">
   <div class="container">
     <div class="grid-3">
+      {% assign has_products = false %}
+
+      {%- comment -%} First pass: in-stock variants {%- endcomment -%}
       {% for product in collection.products %}
         {% for variant in product.variants %}
-          {% render 'variant-card', product: product, variant: variant, meta_text: section.settings.card_meta_text, show_tag: false, tag_label: '' %}
+          {% if variant.available %}
+            {% assign has_products = true %}
+            {% render 'variant-card', product: product, variant: variant, meta_text: section.settings.card_meta_text, show_tag: false, tag_label: '' %}
+          {% endif %}
         {% endfor %}
-      {% else %}
+      {% endfor %}
+
+      {%- comment -%} Second pass: sold-out variants {%- endcomment -%}
+      {% for product in collection.products %}
+        {% for variant in product.variants %}
+          {% unless variant.available %}
+            {% assign has_products = true %}
+            {% render 'variant-card', product: product, variant: variant, meta_text: section.settings.card_meta_text, show_tag: false, tag_label: '' %}
+          {% endunless %}
+        {% endfor %}
+      {% endfor %}
+
+      {% unless has_products %}
         <div class="card placeholder">
           <div class="card-img"><div class="ph-ring"></div></div>
           <div class="card-body">
@@ -21,12 +39,12 @@
             <div class="cmeta">Add products to this collection</div>
           </div>
         </div>
-      {% endfor %}
+      {% endunless %}
     </div>
 
-    {% if paginate.pages > 1 %}
-      <div style="text-align:center; margin-top:40px;">
-        {{ paginate | default_pagination }}
+    {% if section.settings.end_message != blank %}
+      <div class="collection-end">
+        <span>{{ section.settings.end_message }}</span>
       </div>
     {% endif %}
   </div>
@@ -37,7 +55,8 @@
   "name": "Collection",
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop" },
-    { "type": "text", "id": "card_meta_text", "label": "Card meta line", "default": "Embroidered · Adjustable strap" }
+    { "type": "text", "id": "card_meta_text", "label": "Card meta line", "default": "Embroidered · Adjustable strap" },
+    { "type": "text", "id": "end_message", "label": "End-of-collection message", "default": "CREATING NEW STYLES AS WE SPEAK" }
   ]
 }
 {% endschema %}
