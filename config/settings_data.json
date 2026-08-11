@@ -203,7 +203,8 @@
         "type": "collection-main",
         "settings": {
           "eyebrow": "Shop",
-          "card_meta_text": "Embroidered · Adjustable strap"
+          "card_meta_text": "Embroidered · Adjustable strap",
+          "end_message": "CREATING NEW STYLES AS WE SPEAK"
         }
       },
       "product-main": {
@@ -353,7 +354,7 @@
         ],
         "settings": {
           "heading": "What the crowd says",
-          "summary_text": "Rated 5/5 by festival-goers"
+          "summary_text": "Rated 4.8/5 by festival-goers"
         }
       },
       "home-hero": {
