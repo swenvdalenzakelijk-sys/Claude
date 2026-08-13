@@ -98,7 +98,9 @@
           "max_products": 6,
           "card_meta_text": "Embroidered · Adjustable strap",
           "show_bestseller_tag": false,
-          "bestseller_label": "Bestseller"
+          "bestseller_label": "Bestseller",
+          "button_label": "All styles",
+          "button_link": ""
         }
       },
       "story-band": {
@@ -305,7 +307,8 @@
               "rating": 5,
               "body": "Ordered on a Tuesday, wore it to the festival that weekend. Delivery was ridiculously fast.",
               "name": "Sanne V.",
-              "verified": true
+              "verified": true,
+              "translated": false
             }
           },
           "reviews-1": {
@@ -314,7 +317,8 @@
               "rating": 5,
               "body": "The quality is unreal for the price — thick twill, the embroidery hasn't budged after three wears and a wash.",
               "name": "Daan K.",
-              "verified": true
+              "verified": true,
+              "translated": false
             }
           },
           "reviews-2": {
@@ -323,7 +327,8 @@
               "rating": 5,
               "body": "Been repping CAPSLOCK all summer. Everyone at the campsite asked where I got it. Obsessed with this brand.",
               "name": "Fleur M.",
-              "verified": true
+              "verified": true,
+              "translated": false
             }
           },
           "reviews-3": {
@@ -332,7 +337,8 @@
               "rating": 5,
               "body": "Fits perfectly, arrived in a couple of days, and the design actually turns heads. Exactly what I wanted.",
               "name": "Tim B.",
-              "verified": true
+              "verified": true,
+              "translated": false
             }
           },
           "reviews-4": {
@@ -341,7 +347,8 @@
               "rating": 5,
               "body": "Second cap I've bought from them. Fast shipping every time and the quality keeps me coming back.",
               "name": "Isa R.",
-              "verified": true
+              "verified": true,
+              "translated": false
             }
           }
         },
@@ -354,7 +361,8 @@
         ],
         "settings": {
           "heading": "What the crowd says",
-          "summary_text": "Rated 4.8/5 by festival-goers"
+          "summary_text": "Rated 4.8/5 by festival-goers",
+          "translated_label": "Translated"
         }
       },
       "home-hero": {
@@ -583,6 +591,98 @@
           "submit_label": "Send message",
           "success_message": "Thanks — your message is on its way. We'll reply within 1 business day.",
           "privacy_link": ""
+        }
+      },
+      "shipping-main": {
+        "type": "shipping-main",
+        "blocks": {
+          "shipping-main-0": {
+            "type": "ship_method",
+            "settings": {
+              "tag": "Standard",
+              "title": "Standard shipping",
+              "price_line": "FREE / €3,95",
+              "details": "Arrives within 5 business days\nFree automatically on orders over €25\nTracking link emailed once it ships",
+              "emphasize": false
+            }
+          },
+          "shipping-main-1": {
+            "type": "ship_method",
+            "settings": {
+              "tag": "Express",
+              "title": "Express shipping",
+              "price_line": "€2,99",
+              "details": "Order before 15:00 on a business day\nArrives the next business day\nTracking link emailed once it ships",
+              "emphasize": true
+            }
+          },
+          "shipping-main-2": {
+            "type": "country",
+            "settings": {
+              "name": "Netherlands"
+            }
+          },
+          "shipping-main-3": {
+            "type": "country",
+            "settings": {
+              "name": "Belgium"
+            }
+          },
+          "shipping-main-4": {
+            "type": "info_row",
+            "settings": {
+              "label": "Dispatch time",
+              "value": "Orders are dispatched within 3 business days"
+            }
+          },
+          "shipping-main-5": {
+            "type": "info_row",
+            "settings": {
+              "label": "Order cut-off",
+              "value": "Orders placed before 15:00 on a business day ship the same day"
+            }
+          },
+          "shipping-main-6": {
+            "type": "info_row",
+            "settings": {
+              "label": "Carrier",
+              "value": "All orders are shipped via PostNL"
+            }
+          },
+          "shipping-main-7": {
+            "type": "accordion_item",
+            "settings": {
+              "title": "What if I'm not home for delivery?",
+              "body": "PostNL will leave your parcel with a neighbour or at a nearby pick-up point, and let you know where via text or email."
+            }
+          },
+          "shipping-main-8": {
+            "type": "accordion_item",
+            "settings": {
+              "title": "My order hasn't arrived yet — what do I do?",
+              "body": "Check your tracking link first. Still stuck after the expected delivery date? Get in touch and we'll chase it up with PostNL."
+            }
+          }
+        },
+        "block_order": [
+          "shipping-main-0",
+          "shipping-main-1",
+          "shipping-main-2",
+          "shipping-main-3",
+          "shipping-main-4",
+          "shipping-main-5",
+          "shipping-main-6",
+          "shipping-main-7",
+          "shipping-main-8"
+        ],
+        "settings": {
+          "hero_eyebrow": "Shipping & delivery",
+          "hero_heading": "Straight to your door, on time",
+          "hero_subtext": "We ship every order from the Netherlands. Here's exactly what it costs and how long it takes.",
+          "countries_heading": "Where we ship",
+          "countries_subtext": "We currently deliver to the following countries. More are on the way.",
+          "info_heading": "Good to know",
+          "info_subtext": "The details that don't fit in a table."
         }
       }
     },
