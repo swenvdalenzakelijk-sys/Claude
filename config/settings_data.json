@@ -305,20 +305,20 @@
             "type": "review",
             "settings": {
               "rating": 5,
-              "body": "Ordered on a Tuesday, wore it to the festival that weekend. Delivery was ridiculously fast.",
-              "name": "Sanne V.",
+              "body": "Ordered on a Tuesday, wore it to the festival that weekend. Delivery was very fast.",
+              "name": "Stan V.",
               "verified": true,
-              "translated": false
+              "translated": true
             }
           },
           "reviews-1": {
             "type": "review",
             "settings": {
               "rating": 5,
-              "body": "The quality is unreal for the price — thick twill, the embroidery hasn't budged after three wears and a wash.",
+              "body": "The quality is unreal for the price. Still looks the same after a few festivals.",
               "name": "Daan K.",
               "verified": true,
-              "translated": false
+              "translated": true
             }
           },
           "reviews-2": {
@@ -328,15 +328,15 @@
               "body": "Been repping CAPSLOCK all summer. Everyone at the campsite asked where I got it. Obsessed with this brand.",
               "name": "Fleur M.",
               "verified": true,
-              "translated": false
+              "translated": true
             }
           },
           "reviews-3": {
             "type": "review",
             "settings": {
               "rating": 5,
-              "body": "Fits perfectly, arrived in a couple of days, and the design actually turns heads. Exactly what I wanted.",
-              "name": "Tim B.",
+              "body": "Fits perfectly, arrived in a couple of days, and the design is perfect. Exactly what I wanted.",
+              "name": "Josh B.",
               "verified": true,
               "translated": false
             }
@@ -348,7 +348,7 @@
               "body": "Second cap I've bought from them. Fast shipping every time and the quality keeps me coming back.",
               "name": "Isa R.",
               "verified": true,
-              "translated": false
+              "translated": true
             }
           }
         },
@@ -683,6 +683,117 @@
           "countries_subtext": "We currently deliver to the following countries. More are on the way.",
           "info_heading": "Good to know",
           "info_subtext": "The details that don't fit in a table."
+        }
+      },
+      "returns-main": {
+        "type": "returns-main",
+        "blocks": {
+          "returns-main-0": {
+            "type": "condition",
+            "settings": {
+              "text": "Unworn and unwashed, with no signs of use"
+            }
+          },
+          "returns-main-1": {
+            "type": "condition",
+            "settings": {
+              "text": "In its original packaging, tags attached"
+            }
+          },
+          "returns-main-2": {
+            "type": "condition",
+            "settings": {
+              "text": "Embroidered patch and strap undamaged"
+            }
+          },
+          "returns-main-3": {
+            "type": "condition",
+            "settings": {
+              "text": "Requested within 14 days of delivery"
+            }
+          },
+          "returns-main-4": {
+            "type": "step",
+            "settings": {
+              "title": "Log in to your account",
+              "body": "Go to your CAPSLOCK account, find your order, and select \"Start a return.\" No email needed."
+            }
+          },
+          "returns-main-5": {
+            "type": "step",
+            "settings": {
+              "title": "Pack it up",
+              "body": "Repack your cap in its original packaging, as close to how it arrived as possible."
+            }
+          },
+          "returns-main-6": {
+            "type": "step",
+            "settings": {
+              "title": "Ship it back",
+              "body": "Send it to our return address below. Return shipping costs are covered by you, the customer."
+            }
+          },
+          "returns-main-7": {
+            "type": "accordion_item",
+            "settings": {
+              "title": "When will I get my refund?",
+              "body": "Once we receive and check your return, we'll process your refund within 5 business days to your original payment method."
+            }
+          },
+          "returns-main-8": {
+            "type": "accordion_item",
+            "settings": {
+              "title": "Can I exchange instead of returning?",
+              "body": "Yes — but exchanges are handled by email rather than through your account. Email hello@capslock.com with your order number and the colour or design you'd like."
+            }
+          },
+          "returns-main-9": {
+            "type": "accordion_item",
+            "settings": {
+              "title": "What if my cap arrived damaged or wrong?",
+              "body": "Contact us directly with a photo and your order number within 14 days — we'll sort a replacement or refund and cover the cost."
+            }
+          },
+          "returns-main-10": {
+            "type": "accordion_item",
+            "settings": {
+              "title": "Do you offer free return shipping?",
+              "body": "Not currently — return shipping costs are covered by the customer, except in cases of a damaged, defective, or incorrect item."
+            }
+          }
+        },
+        "block_order": [
+          "returns-main-0",
+          "returns-main-1",
+          "returns-main-2",
+          "returns-main-3",
+          "returns-main-4",
+          "returns-main-5",
+          "returns-main-6",
+          "returns-main-7",
+          "returns-main-8",
+          "returns-main-9",
+          "returns-main-10"
+        ],
+        "settings": {
+          "hero_eyebrow": "Return policy",
+          "hero_heading": "Changed your mind? No hard feelings",
+          "hero_subtext": "We want you to keep your cap because you love it, not because it's a hassle to send back.",
+          "window_days": "14",
+          "window_title": "Days to return",
+          "window_body": "You have 14 days from the day your order arrives to request a return — no reason needed.",
+          "conditions_heading": "The conditions",
+          "conditions_subtext": "To qualify for a return, your cap needs to meet these conditions.",
+          "steps_heading": "How to return it",
+          "steps_subtext": "Three steps, no return label required.",
+          "address_heading": "Return address",
+          "address": "CAPSLOCK\nWeidehoek 10\n3791 RP Achterveld\nNetherlands",
+          "cost_note_label": "Please note:",
+          "cost_note_body": "return shipping costs are the customer's responsibility and are not refunded. We recommend using a tracked shipping method.",
+          "cta_heading": "Ready to start a return?",
+          "cta_body": "Log in to your account and start your return in a few clicks.",
+          "cta_label": "Go to your account",
+          "cta_link": ""
         }
       }
     },
