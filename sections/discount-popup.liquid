@@ -26,6 +26,7 @@
               <p class="cl-popup-success">{{ section.settings.success_text }}</p>
             {% else %}
               <input type="hidden" name="contact[tags]" value="{{ section.settings.signup_tag }}">
+              <input type="hidden" name="contact[accepts_marketing]" value="true">
               <div class="cl-popup-input-row">
                 <input type="email" name="contact[email]" placeholder="{{ section.settings.placeholder }}" required>
                 <button type="submit" class="btn btn-primary">{{ section.settings.button_label }}</button>
@@ -155,7 +156,7 @@
     { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Drop your email and we'll send a 10% discount code for your first order — plus first dibs on every new drop." },
     { "type": "text", "id": "placeholder", "label": "Email placeholder", "default": "you@email.com" },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Send my code" },
-    { "type": "text", "id": "fineprint", "label": "Fine print", "default": "No spam, just caps. Unsubscribe anytime." },
+    { "type": "text", "id": "fineprint", "label": "Fine print", "default": "By signing up you agree to receive CAPSLOCK emails. No spam, just caps — unsubscribe anytime." },
     { "type": "text", "id": "success_text", "label": "Success message", "default": "You're in. Check your inbox for your 10% code." },
     { "type": "text", "id": "decline_label", "label": "Decline link text", "default": "No thanks" },
     { "type": "image_picker", "id": "image", "label": "Popup image (optional)" },
