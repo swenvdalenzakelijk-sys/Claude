@@ -1,0 +1,28 @@
+{% if section.settings.enabled %}
+  <button type="button" class="cult-banner" data-open-popup aria-label="{{ section.settings.text }}">
+    <span class="cult-banner-text">{{ section.settings.text }}</span>
+    <span class="cult-banner-arrow">↗</span>
+  </button>
+
+  <style>
+    .cult-banner{
+      width:100%;background:var(--red);color:#fff;border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      padding:11px 20px;font-family:var(--body);font-size:12.5px;font-weight:700;
+      letter-spacing:.1em;text-transform:uppercase;transition:background .2s ease;
+    }
+    .cult-banner:hover{background:var(--red-dim,#c8172a);}
+    .cult-banner-arrow{font-size:14px;transition:transform .2s ease;}
+    .cult-banner:hover .cult-banner-arrow{transform:translate(2px,-2px);}
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Cult banner",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Enable banner", "default": true },
+    { "type": "text", "id": "text", "label": "Banner text", "default": "Join the Cult — get 10% off" }
+  ]
+}
+{% endschema %}
