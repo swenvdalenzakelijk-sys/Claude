@@ -86,6 +86,14 @@
         </div>
 
 
+        {% if section.settings.promo_enabled and section.settings.promo_text != blank %}
+          <div class="product-promo">
+            <span class="product-promo-badge">{{ section.settings.promo_badge }}</span>
+            <span class="product-promo-text">{{ section.settings.promo_text }}</span>
+          </div>
+        {% endif %}
+
+
         {% if product.options contains 'Color' or product.options contains 'Colour' %}
 
           <span class="opt-label">
@@ -760,6 +768,28 @@
       "id": "brand_label",
       "label": "Brand label",
       "default": "CAPSLOCK — Festival Caps"
+    },
+    {
+      "type": "header",
+      "content": "Promo banner"
+    },
+    {
+      "type": "checkbox",
+      "id": "promo_enabled",
+      "label": "Show promo banner",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "promo_badge",
+      "label": "Promo badge",
+      "default": "Deal"
+    },
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "Promo text",
+      "default": "Buy 2, get 50% off your second cap — applied automatically at checkout."
     },
     {
       "type": "textarea",

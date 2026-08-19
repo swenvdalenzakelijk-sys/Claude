@@ -911,3 +911,18 @@
   width:16px; height:16px; border-radius:4px; background:var(--red); color:#fff;
   font-size:10px; font-weight:700;
 }
+
+/* ---------- Product page promo banner ---------- */
+.product-promo {
+  display:flex; align-items:center; gap:12px; margin:6px 0 22px;
+  background:var(--white); border:1px solid var(--hairline); border-left:4px solid var(--red);
+  border-radius:12px; padding:14px 16px;
+}
+.product-promo-badge {
+  flex:none; background:var(--red); color:#fff;
+  font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  padding:4px 10px; border-radius:100px;
+}
+.product-promo-text {
+  font-size:13.5px; line-height:1.45; color:var(--ink); font-weight:600;
+}
