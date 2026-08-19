@@ -1,0 +1,156 @@
+{%- comment -%}
+  CAPSLOCK discount popup. Renders once per visitor (localStorage), after a delay.
+  Captures email via Shopify's native customer form so signups land in admin tagged.
+{%- endcomment -%}
+
+{% if section.settings.enabled %}
+  <div class="cl-popup-overlay" id="clPopupOverlay" hidden>
+    <div class="cl-popup" role="dialog" aria-modal="true" aria-labelledby="clPopupTitle">
+
+      <button class="cl-popup-close" id="clPopupClose" aria-label="Close">&times;</button>
+
+      {% if section.settings.image %}
+        <div class="cl-popup-visual">
+          {{ section.settings.image | image_url: width: 700 | image_tag: alt: section.settings.heading }}
+        </div>
+      {% endif %}
+
+      <div class="cl-popup-body">
+        <div class="cl-popup-eyebrow">{{ section.settings.eyebrow }}</div>
+        <h2 class="cl-popup-title" id="clPopupTitle">{{ section.settings.heading }}</h2>
+        <p class="cl-popup-text">{{ section.settings.subtext }}</p>
+
+        <div id="clPopupFormWrap">
+          {% form 'customer', class: 'cl-popup-form' %}
+            {% if form.posted_successfully? %}
+              <p class="cl-popup-success">{{ section.settings.success_text }}</p>
+            {% else %}
+              <input type="hidden" name="contact[tags]" value="{{ section.settings.signup_tag }}">
+              <div class="cl-popup-input-row">
+                <input type="email" name="contact[email]" placeholder="{{ section.settings.placeholder }}" required>
+                <button type="submit" class="btn btn-primary">{{ section.settings.button_label }}</button>
+              </div>
+              <p class="cl-popup-fineprint">{{ section.settings.fineprint }}</p>
+            {% endif %}
+          {% endform %}
+        </div>
+
+        <button class="cl-popup-decline" id="clPopupDecline">{{ section.settings.decline_label }}</button>
+      </div>
+
+    </div>
+  </div>
+
+  <style>
+    .cl-popup-overlay{
+      position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+      background:rgba(11,11,12,0.55);padding:20px;opacity:0;transition:opacity .3s ease;
+    }
+    .cl-popup-overlay.open{opacity:1;}
+    .cl-popup{
+      background:var(--paper);border-radius:20px;overflow:hidden;max-width:860px;width:100%;
+      display:grid;grid-template-columns:1fr 1fr;position:relative;
+      transform:translateY(16px);transition:transform .35s cubic-bezier(0.16,1,0.3,1);
+      box-shadow:0 40px 90px rgba(11,11,12,0.3);
+    }
+    .cl-popup-overlay.open .cl-popup{transform:translateY(0);}
+    .cl-popup-visual{background:var(--white);}
+    .cl-popup-visual img{width:100%;height:100%;object-fit:cover;display:block;}
+    .cl-popup-body{padding:44px 40px;display:flex;flex-direction:column;justify-content:center;}
+    .cl-popup-eyebrow{
+      font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--red);margin-bottom:16px;
+    }
+    .cl-popup-title{
+      font-family:var(--display);font-size:clamp(34px,4vw,52px);line-height:.95;text-transform:uppercase;margin-bottom:14px;
+    }
+    .cl-popup-text{font-size:15px;line-height:1.6;color:var(--grey);margin-bottom:24px;}
+    .cl-popup-input-row{display:flex;gap:10px;flex-wrap:wrap;}
+    .cl-popup-input-row input{
+      flex:1;min-width:180px;border:1.4px solid var(--hairline);border-radius:100px;
+      padding:14px 20px;font-family:var(--body);font-size:14.5px;background:var(--white);
+    }
+    .cl-popup-input-row input:focus{outline:none;border-color:var(--ink);}
+    .cl-popup-input-row .btn{padding:14px 26px;}
+    .cl-popup-fineprint{font-size:11.5px;color:var(--grey);margin-top:12px;}
+    .cl-popup-success{font-size:16px;font-weight:600;color:var(--red);}
+    .cl-popup-close{
+      position:absolute;top:14px;right:16px;font-size:28px;background:none;border:none;cursor:pointer;
+      width:40px;height:40px;line-height:1;color:var(--ink);z-index:3;
+    }
+    .cl-popup-close:hover{color:var(--red);}
+    .cl-popup-decline{
+      background:none;border:none;cursor:pointer;margin-top:18px;align-self:flex-start;
+      font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--grey);
+      text-decoration:underline;text-underline-offset:3px;
+    }
+    .cl-popup-decline:hover{color:var(--ink);}
+    @media(max-width:720px){
+      .cl-popup{grid-template-columns:1fr;max-width:440px;}
+      .cl-popup-visual{display:none;}
+      .cl-popup-body{padding:44px 30px 34px;}
+    }
+  </style>
+
+  <script>
+    (function(){
+      var KEY = 'cl_popup_seen_v1';
+      var overlay = document.getElementById('clPopupOverlay');
+      if (!overlay) return;
+
+      // If the form was just submitted successfully, force-show so they see the success message.
+      var justPosted = {% if form.posted_successfully? %}true{% else %}false{% endif %};
+
+      var delay = {{ section.settings.delay_seconds | default: 5 | times: 1000 }};
+
+      function show(){
+        overlay.hidden = false;
+        requestAnimationFrame(function(){ overlay.classList.add('open'); });
+        document.body.style.overflow = 'hidden';
+      }
+      function hide(remember){
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(function(){ overlay.hidden = true; }, 320);
+        if (remember) { try { localStorage.setItem(KEY, '1'); } catch(e){} }
+      }
+
+      var seen = false;
+      try { seen = localStorage.getItem(KEY) === '1'; } catch(e){}
+
+      if (justPosted) {
+        show();
+        try { localStorage.setItem(KEY, '1'); } catch(e){}
+      } else if (!seen) {
+        setTimeout(show, delay);
+      }
+
+      document.getElementById('clPopupClose').addEventListener('click', function(){ hide(true); });
+      var decline = document.getElementById('clPopupDecline');
+      if (decline) decline.addEventListener('click', function(){ hide(true); });
+      overlay.addEventListener('click', function(e){ if (e.target === overlay) hide(true); });
+      document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !overlay.hidden) hide(true); });
+    })();
+  </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Discount popup",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Enable popup", "default": true },
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "10% off your first cap" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Join the CAPSLOCK cult" },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Drop your email and we'll send a 10% discount code for your first order — plus first dibs on every new drop." },
+    { "type": "text", "id": "placeholder", "label": "Email placeholder", "default": "you@email.com" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Send my code" },
+    { "type": "text", "id": "fineprint", "label": "Fine print", "default": "No spam, just caps. Unsubscribe anytime." },
+    { "type": "text", "id": "success_text", "label": "Success message", "default": "You're in. Check your inbox for your 10% code." },
+    { "type": "text", "id": "decline_label", "label": "Decline link text", "default": "No thanks" },
+    { "type": "image_picker", "id": "image", "label": "Popup image (optional)" },
+    { "type": "header", "content": "Behaviour" },
+    { "type": "range", "id": "delay_seconds", "label": "Delay before showing (seconds)", "min": 0, "max": 30, "step": 1, "default": 5 },
+    { "type": "text", "id": "signup_tag", "label": "Customer tag applied on signup", "default": "popup-signup,newsletter" }
+  ]
+}
+{% endschema %}
