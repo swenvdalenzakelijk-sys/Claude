@@ -48,6 +48,7 @@
               <span>{{ section.settings.subtotal_label }}</span>
               <span>{{ cart.total_price | money }}</span>
             </div>
+            <p class="cart-summary-discount">{{ section.settings.discount_note }}</p>
             <p class="cart-summary-note">{{ section.settings.shipping_note }}</p>
             <button type="submit" name="checkout" class="btn btn-primary form-submit">{{ section.settings.checkout_label }}</button>
             <a href="{{ section.settings.continue_link }}" class="cart-continue">{{ section.settings.continue_label }}</a>
@@ -115,6 +116,7 @@
     { "type": "text", "id": "empty_button", "label": "Empty cart button label", "default": "Shop all caps" },
     { "type": "url", "id": "empty_link", "label": "Empty cart button link", "default": "/collections/all" },
     { "type": "text", "id": "subtotal_label", "label": "Subtotal label", "default": "Subtotal" },
+    { "type": "text", "id": "discount_note", "label": "Discount note", "default": "Got a code? Add it at checkout." },
     { "type": "text", "id": "shipping_note", "label": "Shipping note", "default": "Shipping and taxes calculated at checkout." },
     { "type": "text", "id": "checkout_label", "label": "Checkout button label", "default": "Checkout" },
     { "type": "text", "id": "continue_label", "label": "Continue shopping label", "default": "Continue shopping" },

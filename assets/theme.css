@@ -900,3 +900,14 @@
 
 /* ---------- Break between designer's note intro and spec list ---------- */
 .note .note-specs { margin-top:24px; }
+
+/* ---------- Cart discount hint ---------- */
+.cart-drawer-discount, .cart-summary-discount {
+  font-size:12.5px; font-weight:600; color:var(--ink);
+  display:flex; align-items:center; gap:6px; margin-bottom:6px;
+}
+.cart-drawer-discount::before, .cart-summary-discount::before {
+  content:"%"; display:inline-flex; align-items:center; justify-content:center;
+  width:16px; height:16px; border-radius:4px; background:var(--red); color:#fff;
+  font-size:10px; font-weight:700;
+}
