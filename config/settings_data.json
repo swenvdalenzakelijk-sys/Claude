@@ -266,7 +266,7 @@
             "type": "accordion_item",
             "settings": {
               "title": "Shipping & returns",
-              "body": "Orders arrive within 5 business days. Free returns within 14 days, no questions asked — return shipping is the customer's responsibility."
+              "body": "Orders arrive within 5 business days. Return within 14 days, no questions asked."
             }
           }
         },
@@ -283,6 +283,9 @@
         ],
         "settings": {
           "brand_label": "CAPSLOCK — Festival Caps",
+          "promo_enabled": true,
+          "promo_badge": "Deal",
+          "promo_text": "Buy 2, get 50% off your second cap — applied automatically at checkout.",
           "note_body": "Six-panel dad cap with embroidered patch, cut from heavyweight brushed cotton twill and finished with a metal adjustable buckle. Built for the front row and the long walk back.",
           "fit_label": "One size",
           "fit_detail": "fits 55–61cm",
@@ -1036,6 +1039,29 @@
           "hero_heading": "Terms & Conditions",
           "hero_subtext": "Last updated: 9 August 2026. These terms apply to every order placed on capslock.com.",
           "disclaimer": ""
+        }
+      },
+      "cult-banner": {
+        "type": "cult-banner",
+        "settings": {
+          "enabled": true,
+          "text": "Join the Cult — get 10% off"
+        }
+      },
+      "discount-popup": {
+        "type": "discount-popup",
+        "settings": {
+          "enabled": true,
+          "eyebrow": "10% off your first cap",
+          "heading": "Join the CAPSLOCK cult",
+          "subtext": "Drop your email and we'll send a 10% discount code for your first order — plus first dibs on every new drop.",
+          "placeholder": "you@email.com",
+          "button_label": "Send my code",
+          "fineprint": "By signing up you agree to receive CAPSLOCK emails. No spam, just caps — unsubscribe anytime.",
+          "success_text": "You're in. Check your inbox for your 10% code.",
+          "decline_label": "No thanks",
+          "delay_seconds": 5,
+          "signup_tag": "popup-signup,newsletter"
         }
       }
     },
