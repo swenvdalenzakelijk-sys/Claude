@@ -927,3 +927,19 @@
 .product-promo-text {
   font-size:13.5px; line-height:1.45; color:var(--ink); font-weight:600;
 }
+
+/* ---------- Product urgency note (above buy button) ---------- */
+.urgency-note {
+  display:flex; align-items:center; gap:9px; margin:0 0 14px;
+  font-size:13px; font-weight:600; color:var(--ink);
+  letter-spacing:.01em;
+}
+.urgency-dot {
+  flex:none; width:8px; height:8px; border-radius:50%; background:var(--red);
+  box-shadow:0 0 0 0 rgba(225,29,46,0.5); animation:urgencyPulse 1.8s infinite;
+}
+@keyframes urgencyPulse {
+  0%   { box-shadow:0 0 0 0 rgba(225,29,46,0.5); }
+  70%  { box-shadow:0 0 0 7px rgba(225,29,46,0); }
+  100% { box-shadow:0 0 0 0 rgba(225,29,46,0); }
+}

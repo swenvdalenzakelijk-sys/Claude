@@ -139,6 +139,13 @@
         </div>
 
 
+        {% if section.settings.urgency_enabled and section.settings.urgency_text != blank %}
+          <p class="urgency-note">
+            <span class="urgency-dot"></span>{{ section.settings.urgency_text }}
+          </p>
+        {% endif %}
+
+
         {%- comment -%}
           ADD TO CART FORM
 
@@ -817,6 +824,22 @@
       "id": "fit_detail",
       "label": "Fit detail",
       "default": "fits 55–61cm"
+    },
+    {
+      "type": "header",
+      "content": "Urgency note (above buy button)"
+    },
+    {
+      "type": "checkbox",
+      "id": "urgency_enabled",
+      "label": "Show urgency note",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "urgency_text",
+      "label": "Urgency text",
+      "default": "Order now to receive your order before ADE starts"
     },
     {
       "type": "text",
