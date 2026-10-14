@@ -357,6 +357,15 @@
 
         </div>
 
+
+        {% for block in section.blocks %}
+          {% if block.type == 'custom_liquid' %}
+            <div class="product-custom-liquid" {{ block.shopify_attributes }}>
+              {{ block.settings.custom_liquid }}
+            </div>
+          {% endif %}
+        {% endfor %}
+
       </div>
 
     </div>
@@ -905,6 +914,18 @@
           "type": "textarea",
           "id": "body",
           "label": "Body"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "Custom Liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom Liquid",
+          "info": "Add your own Liquid or HTML. Renders in the product info column."
         }
       ]
     }
