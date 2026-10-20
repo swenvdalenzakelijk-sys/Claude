@@ -16,33 +16,19 @@
           "announcement-bar-0": {
             "type": "message",
             "settings": {
-              "message": "FREE SHIPPING OVER €25"
+              "message": "Free shipping in NL & BE over €25"
             }
           },
           "announcement-bar-1": {
             "type": "message",
             "settings": {
-              "message": "NEW DROP — THE CAPSLOCK CAP"
-            }
-          },
-          "announcement-bar-2": {
-            "type": "message",
-            "settings": {
-              "message": "ARRIVES IN 5 BUSINESS DAYS"
-            }
-          },
-          "announcement-bar-3": {
-            "type": "message",
-            "settings": {
-              "message": "MADE FOR THE MAINSTAGE"
+              "message": "Buy 2, get 50% off the second cap"
             }
           }
         },
         "block_order": [
           "announcement-bar-0",
-          "announcement-bar-1",
-          "announcement-bar-2",
-          "announcement-bar-3"
+          "announcement-bar-1"
         ],
         "settings": {}
       },

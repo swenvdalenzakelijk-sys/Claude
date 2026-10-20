@@ -194,18 +194,7 @@
             >
 
               <span id="addToCartLabel">
-
-                {% if product.selected_or_first_available_variant.available %}
-                  {{ section.settings.add_to_cart_label }}
-                {% else %}
-                  {{ section.settings.sold_out_label }}
-                {% endif %}
-
-                —
-                <span id="variantPriceInline">
-                  {{ product.selected_or_first_available_variant.price | money }}
-                </span>
-
+                {% if product.selected_or_first_available_variant.available %}{{ section.settings.add_to_cart_label }}{% else %}{{ section.settings.sold_out_label }}{% endif %}
               </span>
 
             </button>
@@ -213,6 +202,18 @@
           </div>
 
         {% endform %}
+
+
+        {%- if shop.enabled_payment_types.size > 0 -%}
+          <div class="payment-icons">
+            <span class="payment-icons-label">Secure checkout</span>
+            <div class="payment-icons-row">
+              {%- for type in shop.enabled_payment_types -%}
+                {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
 
 
         {%- comment -%}
@@ -323,12 +324,6 @@
             </ul>
 
           {% endif %}
-
-
-          <p class="sku">
-            {{ section.settings.handle_label }}:
-            {{ product.handle }}
-          </p>
 
         </div>
 
@@ -687,13 +682,7 @@
 
 
       if (labelSpan) {
-
-        labelSpan.innerHTML =
-          label +
-          ' — <span id="variantPriceInline">' +
-          formattedPrice +
-          '</span>';
-
+        labelSpan.textContent = label;
       }
 
     }

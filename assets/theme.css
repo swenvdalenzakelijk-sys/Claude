@@ -943,3 +943,21 @@
   70%  { box-shadow:0 0 0 7px rgba(225,29,46,0); }
   100% { box-shadow:0 0 0 0 rgba(225,29,46,0); }
 }
+
+/* ---------- Payment icons (product page + footer) ---------- */
+.payment-icons { margin:18px 0 6px; text-align:center; }
+.payment-icons-label {
+  display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--grey); margin-bottom:10px;
+}
+.payment-icons-row {
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:center;
+}
+.payment-icon {
+  width:32px; height:auto; border-radius:4px;
+  filter:grayscale(1); opacity:.7;
+}
+.footer-payment-icons {
+  margin:0 0 24px; padding-top:24px; border-top:1px solid var(--hairline);
+}
+.footer-payment-icons .payment-icon { opacity:.85; }

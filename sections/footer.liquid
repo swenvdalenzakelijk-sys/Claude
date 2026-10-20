@@ -34,6 +34,16 @@
         {% endfor %}
       </div>
     </div>
+    {%- if shop.enabled_payment_types.size > 0 -%}
+      <div class="payment-icons footer-payment-icons">
+        <span class="payment-icons-label">Secure checkout</span>
+        <div class="payment-icons-row">
+          {%- for type in shop.enabled_payment_types -%}
+            {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
     <div class="foot-bottom">
       <span>{{ section.settings.copyright }}</span>
       <span>{{ section.settings.shipping_note }}</span>
